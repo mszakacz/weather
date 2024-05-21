@@ -1,2 +1,4 @@
 # Custom Dictionary Words
+grnd
+nodoc
 openweathermap

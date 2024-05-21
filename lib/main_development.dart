@@ -6,7 +6,7 @@ void main() async {
   await bootstrap(
     () async {
       final weatherApiClient = WeatherApiClient();
-      await weatherApiClient.getWeatherForecast(
+      final weatherData = await weatherApiClient.getWeatherForecast(
         lat: '30.40',
         lon: '40.10',
       );
