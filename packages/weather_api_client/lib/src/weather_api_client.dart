@@ -20,10 +20,12 @@ class WeatherApiClient {
   // request to get weather forecast by lat lon
   // https://api.openweathermap.org/data/2.5/forecast?lat=30.44&lon=44.00&APPID=<api_key>
 
+  // docs: https://openweathermap.org/forecast5
+
   /// get weather forecast by passing location latitude and longitude
   /// example of the request:
   /// https://api.openweathermap.org/data/2.5/forecast?lat=30.44&lon=44.00&APPID=<api_key>
-  Future<Map<String, dynamic>> getWeatherForecast({
+  Future<WeatherForecastData> getWeatherForecast({
     required String lat,
     required String lon,
   }) async {
@@ -48,8 +50,7 @@ class WeatherApiClient {
     try {
       final dynamic json = jsonDecode(response.body);
 
-      return json as Map<String, dynamic>;
-      // TODO(Maciej): create WeatherForecast model and return the instance here
+      return WeatherForecastData.fromJson(json as Map<String, dynamic>);
     } catch (_) {
       throw WeatherForecastDeserializationFailure();
     }
