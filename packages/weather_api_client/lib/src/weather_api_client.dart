@@ -55,4 +55,13 @@ class WeatherApiClient {
       throw WeatherForecastDeserializationFailure();
     }
   }
+
+  /// Get icon url
+  /// possible size is 1, 2, 4
+  static String getIconUrl(
+    String icon, {
+    int size = 4,
+  }) {
+    return 'https://openweathermap.org/img/wn/$icon@${size}x.png';
+  }
 }
