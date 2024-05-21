@@ -12,7 +12,8 @@ class WeatherApiClient {
   final http.Client _httpClient;
 
   static const _baseUrl = 'api.openweathermap.org';
-  static const _method = '/data/2.5/forecast';
+  static const _forecastMethod = '/data/2.5/forecast';
+  static const _geoMethod = '/geo/1.0/direct';
 
   // request to get the weather forecast by city string
   // https://api.openweathermap.org/data/2.5/forecast?q=London,uk&APPID=<api_key>
@@ -31,7 +32,7 @@ class WeatherApiClient {
   }) async {
     final uri = Uri.https(
       _baseUrl,
-      _method,
+      _forecastMethod,
       {
         'lat': lat,
         'lon': lon,
@@ -63,5 +64,44 @@ class WeatherApiClient {
     int size = 4,
   }) {
     return 'https://openweathermap.org/img/wn/$icon@${size}x.png';
+  }
+
+  /// Get locations by query
+  Future<List<LocationData>> getLocations({
+    required String query,
+    int limit = 3,
+  }) async {
+    final uri = Uri.https(
+      _baseUrl,
+      _geoMethod,
+      {
+        'q': query,
+        'limit': '$limit',
+        'APPID': const String.fromEnvironment('WEATHER_API_KEY'),
+      },
+    );
+
+    final response = await _httpClient.get(
+      uri,
+    );
+
+    if (response.statusCode != 200) {
+      throw GetLocationsFailure();
+    }
+
+    try {
+      final list = jsonDecode(response.body);
+
+      final locations = <LocationData>[];
+      for (final json in list as List) {
+        locations.add(
+          LocationData.fromJson(json as Map<String, dynamic>),
+        );
+      }
+
+      return locations;
+    } catch (_) {
+      throw LocationDataDeserializationFailure();
+    }
   }
 }

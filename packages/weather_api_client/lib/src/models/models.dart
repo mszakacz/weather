@@ -1,3 +1,4 @@
+export './location_data.dart';
 export './weather_data.dart';
 export './weather_data_city.dart';
 export './weather_data_main.dart';
