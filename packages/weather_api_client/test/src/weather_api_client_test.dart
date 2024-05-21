@@ -202,5 +202,13 @@ void main() {
         expect(actual, expected);
       });
     });
+    group('getWeatherForecast', () {
+      test('returns correct url', () {
+        expect(
+          WeatherApiClient.getIconUrl('04d'),
+          'https://openweathermap.org/img/wn/04d@4x.png',
+        );
+      });
+    });
   });
 }
