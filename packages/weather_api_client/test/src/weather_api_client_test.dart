@@ -80,7 +80,6 @@ void main() {
       test(
         'throws WeatherForecastDeserializationFailure',
         () async {
-          // TODO(Maciej): improve this test when WeatherForecast
           final response = MockResponse();
           when(() => response.statusCode).thenReturn(200);
           when(() => response.body).thenReturn(
