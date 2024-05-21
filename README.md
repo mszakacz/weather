@@ -33,13 +33,17 @@ e.g: `flutter run --dart-define-from-file=api_keys.json`
 
 ## Build the app
 iOS Release Production
+
 `flutter build ipa --release lib/main_production.dart --dart-define-from-file=api_keys.json`
 
 Android Release Production
+
 `flutter build aab --release lib/main_production.dart --dart-define-from-file=api_keys.json`
 
 iOS Debug Development
+
 `flutter build ipa --debug lib/main_development.dart --dart-define-from-file=api_keys.json`
 
 Android Debug Development
+
 `flutter build aab --debug lib/main_development.dart --dart-define-from-file=api_keys.json`
