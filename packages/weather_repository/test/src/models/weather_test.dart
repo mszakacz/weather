@@ -17,7 +17,7 @@ void main() {
     );
 
     Weather createSubject() => Weather(
-          time: DateTime(2024, 5, 22, 17),
+          time: DateTime(2024, 5, 22, 17).toLocal(),
           temperature: 22,
           iconUrl: '03d',
         );
