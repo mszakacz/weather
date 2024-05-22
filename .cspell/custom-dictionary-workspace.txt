@@ -2,3 +2,4 @@
 grnd
 nodoc
 openweathermap
+subosito
