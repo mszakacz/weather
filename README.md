@@ -32,18 +32,25 @@ e.g: `flutter run --dart-define-from-file=api_keys.json`
 <hr style="border:2px solid gray">
 
 ## Build the app
-iOS Release Production  
+###### iOS Release Production  
 `flutter build ipa --release lib/main_production.dart --dart-define-from-file=api_keys.json`
 
-Android Release Production  
+###### Android Release Production  
 `flutter build aab --release lib/main_production.dart --dart-define-from-file=api_keys.json`
 
-iOS Debug Development 
+###### iOS Debug Development 
 `flutter build ipa --debug lib/main_development.dart --dart-define-from-file=api_keys.json`
 
-Android Debug Development 
+###### Android Debug Development 
 `flutter build aab --debug lib/main_development.dart --dart-define-from-file=api_keys.json`
+<hr style="border:2px solid gray">
+
 
 ## Test
 To test the app and all packages simply run 
 `flutter test . packages/*`
+<hr style="border:2px solid gray">
+
+
+## Weather API docs
+https://openweathermap.org/forecast5

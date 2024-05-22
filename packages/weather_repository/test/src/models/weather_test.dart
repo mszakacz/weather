@@ -17,7 +17,10 @@ void main() {
     );
 
     Weather createSubject() => Weather(
-          time: DateTime(2024, 5, 22, 17),
+          time: DateTime.fromMillisecondsSinceEpoch(
+            1716390000000,
+            isUtc: true,
+          ).toLocal(),
           temperature: 22,
           iconUrl: '03d',
         );
@@ -42,7 +45,10 @@ void main() {
       expect(
         createSubject().props,
         equals([
-          DateTime(2024, 5, 22, 17),
+          DateTime.fromMillisecondsSinceEpoch(
+            1716390000000,
+            isUtc: true,
+          ).toLocal(),
           22,
           '03d',
         ]),

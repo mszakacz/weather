@@ -47,17 +47,26 @@ void main() {
           city: 'Warsaw',
           moments: [
             Weather(
-              time: DateTime(2024, 5, 22, 11),
+              time: DateTime.fromMillisecondsSinceEpoch(
+                1716368400000,
+                isUtc: true,
+              ).toLocal(),
               temperature: 18,
               iconUrl: '03d',
             ),
             Weather(
-              time: DateTime(2024, 5, 22, 14),
+              time: DateTime.fromMillisecondsSinceEpoch(
+                1716379200000,
+                isUtc: true,
+              ).toLocal(),
               temperature: 24,
               iconUrl: '03d',
             ),
             Weather(
-              time: DateTime(2024, 5, 22, 17),
+              time: DateTime.fromMillisecondsSinceEpoch(
+                1716390000000,
+                isUtc: true,
+              ).toLocal(),
               temperature: 22,
               iconUrl: '03d',
             ),
@@ -87,17 +96,26 @@ void main() {
           'Warsaw',
           [
             Weather(
-              time: DateTime(2024, 5, 22, 11),
+              time: DateTime.fromMillisecondsSinceEpoch(
+                1716368400000,
+                isUtc: true,
+              ).toLocal(),
               temperature: 18,
               iconUrl: '03d',
             ),
             Weather(
-              time: DateTime(2024, 5, 22, 14),
+              time: DateTime.fromMillisecondsSinceEpoch(
+                1716379200000,
+                isUtc: true,
+              ).toLocal(),
               temperature: 24,
               iconUrl: '03d',
             ),
             Weather(
-              time: DateTime(2024, 5, 22, 17),
+              time: DateTime.fromMillisecondsSinceEpoch(
+                1716390000000,
+                isUtc: true,
+              ).toLocal(),
               temperature: 22,
               iconUrl: '03d',
             ),
@@ -111,7 +129,10 @@ void main() {
         createSubject().current,
         equals(
           Weather(
-            time: DateTime(2024, 5, 22, 11),
+            time: DateTime.fromMillisecondsSinceEpoch(
+              1716368400000,
+              isUtc: true,
+            ).toLocal(),
             temperature: 18,
             iconUrl: '03d',
           ),
@@ -125,7 +146,10 @@ void main() {
         equals(
           [
             DayWeather(
-              day: DateTime(2024, 5, 22, 11),
+              day: DateTime.fromMillisecondsSinceEpoch(
+                1716368400000,
+                isUtc: true,
+              ).toLocal(),
               maxTemperature: 24,
               minTemperature: 18,
               iconUrl: '03d',
