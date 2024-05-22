@@ -34,7 +34,7 @@ void main() {
       city: 'Warsaw',
       moments: [
         Weather(
-          time: DateTime(2024, 5, 22, 17),
+          time: DateTime(2024, 5, 22, 17).toLocal(),
           temperature: 24,
           iconUrl: '03d',
         ),
