@@ -14,8 +14,8 @@ void main() {
     late MockHttpClient mockHttpClient;
     late WeatherApiClient apiClient;
 
-    const lat = '30.05';
-    const lon = '45.01';
+    const lat = 30.05;
+    const lon = 45.01;
 
     setUpAll(() {
       registerFallbackValue(FakeUri());
@@ -50,8 +50,8 @@ void main() {
               'api.openweathermap.org',
               '/data/2.5/forecast',
               {
-                'lat': lat,
-                'lon': lon,
+                'lat': lat.toString(),
+                'lon': lon.toString(),
                 'APPID': '',
               },
             ),
