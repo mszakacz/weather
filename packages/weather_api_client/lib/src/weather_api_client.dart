@@ -27,15 +27,15 @@ class WeatherApiClient {
   /// example of the request:
   /// https://api.openweathermap.org/data/2.5/forecast?lat=30.44&lon=44.00&APPID=<api_key>
   Future<WeatherForecastData> getWeatherForecast({
-    required String lat,
-    required String lon,
+    required double lat,
+    required double lon,
   }) async {
     final uri = Uri.https(
       _baseUrl,
       _forecastMethod,
       {
-        'lat': lat,
-        'lon': lon,
+        'lat': lat.toString(),
+        'lon': lon.toString(),
         'APPID': const String.fromEnvironment('WEATHER_API_KEY'),
       },
     );
