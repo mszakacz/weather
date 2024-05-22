@@ -17,8 +17,8 @@ class Weather extends Equatable {
       Weather(
         time: DateTime.fromMillisecondsSinceEpoch(
           data.dt * 1000,
-          // isUtc: true,
-        ),
+          isUtc: true,
+        ).toLocal(),
         temperature: data.main.temp.round(),
         iconUrl: data.weather.first.icon,
       );
