@@ -1,17 +1,35 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:location_api_client/location_api_client.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:weather_api_client/weather_api_client.dart';
 import 'package:weather_repository/weather_repository.dart';
 
-class MockApiClient extends Mock implements WeatherApiClient {}
+class MockWeatherApiClient extends Mock implements WeatherApiClient {}
+
+class MockLocationApiClient extends Mock implements LocationApiClient {}
 
 void main() {
   group('WeatherRepository', () {
-    late MockApiClient mockApiClient;
+    late MockWeatherApiClient mockWeatherApiClient;
+    late MockLocationApiClient mockLocationApiClient;
+
     late WeatherRepository repository;
 
-    const lat = 53.13;
-    const lon = 23.168;
+    const lat = 37.423;
+    const lon = -122.083;
+
+    final position = Position(
+      longitude: -122.083,
+      latitude: 37.423,
+      timestamp: DateTime.now(),
+      accuracy: 2000,
+      altitude: 0,
+      altitudeAccuracy: 0,
+      heading: 0,
+      headingAccuracy: 1,
+      speed: 0,
+      speedAccuracy: 0,
+    );
 
     const data = WeatherForecastData(
       list: [
@@ -45,18 +63,26 @@ void main() {
     );
 
     setUp(() {
-      mockApiClient = MockApiClient();
-      repository = WeatherRepository(weatherApiClient: mockApiClient);
+      mockWeatherApiClient = MockWeatherApiClient();
+      mockLocationApiClient = MockLocationApiClient();
+      repository = WeatherRepository(
+        weatherApiClient: mockWeatherApiClient,
+        locationApiClient: mockLocationApiClient,
+      );
     });
 
     WeatherRepository createSubject() => WeatherRepository(
-          weatherApiClient: mockApiClient,
+          weatherApiClient: mockWeatherApiClient,
+          locationApiClient: mockLocationApiClient,
         );
 
     group('constructor', () {
       test('can be instantiated', () {
         expect(
-          WeatherRepository(weatherApiClient: mockApiClient),
+          WeatherRepository(
+            weatherApiClient: mockWeatherApiClient,
+            locationApiClient: mockLocationApiClient,
+          ),
           isNotNull,
         );
       });
@@ -71,7 +97,7 @@ void main() {
     group('getWeatherForecast', () {
       test('makes correct api request', () async {
         when(
-          () => mockApiClient.getWeatherForecast(
+          () => mockWeatherApiClient.getWeatherForecast(
             lat: lat,
             lon: lon,
           ),
@@ -81,7 +107,7 @@ void main() {
           lon: lon,
         );
         verify(
-          () => mockApiClient.getWeatherForecast(
+          () => mockWeatherApiClient.getWeatherForecast(
             lat: lat,
             lon: lon,
           ),
@@ -90,7 +116,7 @@ void main() {
 
       test('returns WeatherForecast instance on valid response', () async {
         when(
-          () => mockApiClient.getWeatherForecast(
+          () => mockWeatherApiClient.getWeatherForecast(
             lat: lat,
             lon: lon,
           ),
@@ -104,6 +130,46 @@ void main() {
         expect(
           actual,
           forecast,
+        );
+      });
+    });
+    group('getWeatherForDeviceLocation', () {
+      test('call getCurrentLocation on locationApiClient', () async {
+        when(
+          () => mockLocationApiClient.getCurrentLocation(),
+        ).thenAnswer((_) async => position);
+
+        when(
+          () => mockWeatherApiClient.getWeatherForecast(
+            lat: lat,
+            lon: lon,
+          ),
+        ).thenAnswer((_) async => data);
+
+        await repository.getWeatherForDeviceLocation();
+
+        verify(
+          () => mockLocationApiClient.getCurrentLocation(),
+        ).called(1);
+      });
+
+      test('returns correct WeatherForecast instance', () async {
+        when(
+          () => mockLocationApiClient.getCurrentLocation(),
+        ).thenAnswer((_) async => position);
+
+        when(
+          () => mockWeatherApiClient.getWeatherForecast(
+            lat: lat,
+            lon: lon,
+          ),
+        ).thenAnswer((_) async => data);
+
+        final actual = await repository.getWeatherForDeviceLocation();
+
+        expect(
+          actual,
+          equals(forecast),
         );
       });
     });

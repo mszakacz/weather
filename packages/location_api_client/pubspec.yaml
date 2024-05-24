@@ -1,5 +1,5 @@
-name: weather_repository
-description: Flutter package that handles Weather related requests
+name: location_api_client
+description: Flutter package that handles location requests
 version: 0.1.0+1
 publish_to: none
 
@@ -8,13 +8,10 @@ environment:
   flutter: "^3.19.0"
 
 dependencies:
-  equatable: ^2.0.5
   flutter:
     sdk: flutter
-  location_api_client:
-    path: ../location_api_client
-  weather_api_client:
-    path: ../weather_api_client
+  geolocator: ^12.0.0
+  geolocator_android: 4.5.5
 
 dev_dependencies:
   flutter_test:
