@@ -11,6 +11,8 @@ _$WeatherDataMainImpl _$$WeatherDataMainImplFromJson(
 ) =>
     _$WeatherDataMainImpl(
       temp: (json['temp'] as num).toDouble(),
+      humidity: (json['humidity'] as num).toInt(),
+      pressure: (json['pressure'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$WeatherDataMainImplToJson(
@@ -18,4 +20,6 @@ Map<String, dynamic> _$$WeatherDataMainImplToJson(
 ) =>
     <String, dynamic>{
       'temp': instance.temp,
+      'humidity': instance.humidity,
+      'pressure': instance.pressure,
     };
