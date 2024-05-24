@@ -10,10 +10,13 @@ void main() {
           dt: 1716368400,
           main: WeatherDataMain(
             temp: 18,
+            humidity: 69,
+            pressure: 1015,
           ),
           weather: [
             WeatherDataWeather(
               icon: '03d',
+              description: 'light rain',
             ),
           ],
         ),
@@ -21,10 +24,13 @@ void main() {
           dt: 1716379200,
           main: WeatherDataMain(
             temp: 24,
+            humidity: 69,
+            pressure: 1015,
           ),
           weather: [
             WeatherDataWeather(
               icon: '03d',
+              description: 'light rain',
             ),
           ],
         ),
@@ -32,10 +38,13 @@ void main() {
           dt: 1716390000,
           main: WeatherDataMain(
             temp: 22,
+            humidity: 69,
+            pressure: 1015,
           ),
           weather: [
             WeatherDataWeather(
               icon: '03d',
+              description: 'light rain',
             ),
           ],
         ),
