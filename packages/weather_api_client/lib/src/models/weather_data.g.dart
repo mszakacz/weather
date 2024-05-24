@@ -13,6 +13,7 @@ _$WeatherDataImpl _$$WeatherDataImplFromJson(Map<String, dynamic> json) =>
       weather: (json['weather'] as List<dynamic>)
           .map((e) => WeatherDataWeather.fromJson(e as Map<String, dynamic>))
           .toList(),
+      wind: WeatherDataWind.fromJson(json['wind'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$WeatherDataImplToJson(_$WeatherDataImpl instance) =>
@@ -20,4 +21,5 @@ Map<String, dynamic> _$$WeatherDataImplToJson(_$WeatherDataImpl instance) =>
       'dt': instance.dt,
       'main': instance.main,
       'weather': instance.weather,
+      'wind': instance.wind,
     };
