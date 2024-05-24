@@ -11,6 +11,7 @@ _$WeatherDataWeatherImpl _$$WeatherDataWeatherImplFromJson(
 ) =>
     _$WeatherDataWeatherImpl(
       icon: json['icon'] as String,
+      description: json['description'] as String,
     );
 
 Map<String, dynamic> _$$WeatherDataWeatherImplToJson(
@@ -18,4 +19,5 @@ Map<String, dynamic> _$$WeatherDataWeatherImplToJson(
 ) =>
     <String, dynamic>{
       'icon': instance.icon,
+      'description': instance.description,
     };
