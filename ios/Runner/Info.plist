@@ -52,5 +52,8 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<!-- Location Permission -->
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Device Location is needed to present the weather for this specific location</string>
 </dict>
 </plist>
