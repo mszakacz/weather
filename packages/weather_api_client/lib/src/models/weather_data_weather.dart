@@ -10,6 +10,7 @@ class WeatherDataWeather with _$WeatherDataWeather {
   /// WeatherDataWeather const constructor
   const factory WeatherDataWeather({
     required String icon,
+    required String description,
   }) = _WeatherDataWeather;
 
   /// get WeatherDataWeather instance from json
