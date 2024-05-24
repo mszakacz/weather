@@ -30,14 +30,16 @@ class WeatherApiClient {
     required double lat,
     required double lon,
   }) async {
+    final params = {
+      'lat': lat.toString(),
+      'lon': lon.toString(),
+      'units': 'metric',
+      'APPID': const String.fromEnvironment('WEATHER_API_KEY'),
+    };
     final uri = Uri.https(
       _baseUrl,
       _forecastMethod,
-      {
-        'lat': lat.toString(),
-        'lon': lon.toString(),
-        'APPID': const String.fromEnvironment('WEATHER_API_KEY'),
-      },
+      params,
     );
 
     final response = await _httpClient.get(
