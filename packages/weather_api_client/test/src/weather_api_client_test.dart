@@ -185,10 +185,13 @@ void main() {
               dt: 1661871600,
               main: WeatherDataMain(
                 temp: 296.76,
+                humidity: 69,
+                pressure: 1015,
               ),
               weather: [
                 WeatherDataWeather(
                   icon: '10d',
+                  description: 'light rain',
                 ),
               ],
             ),
