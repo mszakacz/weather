@@ -17,6 +17,11 @@ void main() {
           description: 'light rain',
         ),
       ],
+      wind: WeatherDataWind(
+        speed: 1.1,
+        deg: 120,
+        gust: 2.3,
+      ),
     );
 
     Weather createSubject() => Weather(
