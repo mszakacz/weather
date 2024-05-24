@@ -6,10 +6,12 @@ void main() {
     const icon = 'icon';
     const json = <String, dynamic>{
       'icon': icon,
+      'description': 'light rain',
     };
 
     WeatherDataWeather createSubject() => const WeatherDataWeather(
           icon: icon,
+          description: 'light rain',
         );
 
     group('constructor', () {
