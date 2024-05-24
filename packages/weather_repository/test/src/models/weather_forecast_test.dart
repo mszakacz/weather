@@ -19,6 +19,11 @@ void main() {
               description: 'light rain',
             ),
           ],
+          wind: WeatherDataWind(
+            speed: 1.1,
+            deg: 120,
+            gust: 2.3,
+          ),
         ),
         WeatherData(
           dt: 1716379200,
@@ -33,6 +38,11 @@ void main() {
               description: 'light rain',
             ),
           ],
+          wind: WeatherDataWind(
+            speed: 1.1,
+            deg: 120,
+            gust: 2.3,
+          ),
         ),
         WeatherData(
           dt: 1716390000,
@@ -47,6 +57,11 @@ void main() {
               description: 'light rain',
             ),
           ],
+          wind: WeatherDataWind(
+            speed: 1.1,
+            deg: 120,
+            gust: 2.3,
+          ),
         ),
       ],
       city: WeatherDataCity(name: 'Warsaw'),
