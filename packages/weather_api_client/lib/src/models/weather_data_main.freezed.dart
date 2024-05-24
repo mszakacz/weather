@@ -21,6 +21,8 @@ WeatherDataMain _$WeatherDataMainFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$WeatherDataMain {
   double get temp => throw _privateConstructorUsedError;
+  int get humidity => throw _privateConstructorUsedError;
+  int get pressure => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +36,7 @@ abstract class $WeatherDataMainCopyWith<$Res> {
           WeatherDataMain value, $Res Function(WeatherDataMain) then) =
       _$WeatherDataMainCopyWithImpl<$Res, WeatherDataMain>;
   @useResult
-  $Res call({double temp});
+  $Res call({double temp, int humidity, int pressure});
 }
 
 /// @nodoc
@@ -51,12 +53,22 @@ class _$WeatherDataMainCopyWithImpl<$Res, $Val extends WeatherDataMain>
   @override
   $Res call({
     Object? temp = null,
+    Object? humidity = null,
+    Object? pressure = null,
   }) {
     return _then(_value.copyWith(
       temp: null == temp
           ? _value.temp
           : temp // ignore: cast_nullable_to_non_nullable
               as double,
+      humidity: null == humidity
+          ? _value.humidity
+          : humidity // ignore: cast_nullable_to_non_nullable
+              as int,
+      pressure: null == pressure
+          ? _value.pressure
+          : pressure // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -69,7 +81,7 @@ abstract class _$$WeatherDataMainImplCopyWith<$Res>
       __$$WeatherDataMainImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({double temp});
+  $Res call({double temp, int humidity, int pressure});
 }
 
 /// @nodoc
@@ -84,12 +96,22 @@ class __$$WeatherDataMainImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? temp = null,
+    Object? humidity = null,
+    Object? pressure = null,
   }) {
     return _then(_$WeatherDataMainImpl(
       temp: null == temp
           ? _value.temp
           : temp // ignore: cast_nullable_to_non_nullable
               as double,
+      humidity: null == humidity
+          ? _value.humidity
+          : humidity // ignore: cast_nullable_to_non_nullable
+              as int,
+      pressure: null == pressure
+          ? _value.pressure
+          : pressure // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -97,17 +119,22 @@ class __$$WeatherDataMainImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$WeatherDataMainImpl implements _WeatherDataMain {
-  const _$WeatherDataMainImpl({required this.temp});
+  const _$WeatherDataMainImpl(
+      {required this.temp, required this.humidity, required this.pressure});
 
   factory _$WeatherDataMainImpl.fromJson(Map<String, dynamic> json) =>
       _$$WeatherDataMainImplFromJson(json);
 
   @override
   final double temp;
+  @override
+  final int humidity;
+  @override
+  final int pressure;
 
   @override
   String toString() {
-    return 'WeatherDataMain(temp: $temp)';
+    return 'WeatherDataMain(temp: $temp, humidity: $humidity, pressure: $pressure)';
   }
 
   @override
@@ -115,12 +142,16 @@ class _$WeatherDataMainImpl implements _WeatherDataMain {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$WeatherDataMainImpl &&
-            (identical(other.temp, temp) || other.temp == temp));
+            (identical(other.temp, temp) || other.temp == temp) &&
+            (identical(other.humidity, humidity) ||
+                other.humidity == humidity) &&
+            (identical(other.pressure, pressure) ||
+                other.pressure == pressure));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, temp);
+  int get hashCode => Object.hash(runtimeType, temp, humidity, pressure);
 
   @JsonKey(ignore: true)
   @override
@@ -138,14 +169,20 @@ class _$WeatherDataMainImpl implements _WeatherDataMain {
 }
 
 abstract class _WeatherDataMain implements WeatherDataMain {
-  const factory _WeatherDataMain({required final double temp}) =
-      _$WeatherDataMainImpl;
+  const factory _WeatherDataMain(
+      {required final double temp,
+      required final int humidity,
+      required final int pressure}) = _$WeatherDataMainImpl;
 
   factory _WeatherDataMain.fromJson(Map<String, dynamic> json) =
       _$WeatherDataMainImpl.fromJson;
 
   @override
   double get temp;
+  @override
+  int get humidity;
+  @override
+  int get pressure;
   @override
   @JsonKey(ignore: true)
   _$$WeatherDataMainImplCopyWith<_$WeatherDataMainImpl> get copyWith =>

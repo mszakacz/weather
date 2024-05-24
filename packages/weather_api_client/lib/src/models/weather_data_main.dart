@@ -10,6 +10,8 @@ class WeatherDataMain with _$WeatherDataMain {
   /// WeatherDataMain const constructor
   const factory WeatherDataMain({
     required double temp,
+    required int humidity,
+    required int pressure,
   }) = _WeatherDataMain;
 
   /// get WeatherDataMain instance from json

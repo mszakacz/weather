@@ -21,6 +21,7 @@ WeatherDataWeather _$WeatherDataWeatherFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$WeatherDataWeather {
   String get icon => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +35,7 @@ abstract class $WeatherDataWeatherCopyWith<$Res> {
           WeatherDataWeather value, $Res Function(WeatherDataWeather) then) =
       _$WeatherDataWeatherCopyWithImpl<$Res, WeatherDataWeather>;
   @useResult
-  $Res call({String icon});
+  $Res call({String icon, String description});
 }
 
 /// @nodoc
@@ -51,11 +52,16 @@ class _$WeatherDataWeatherCopyWithImpl<$Res, $Val extends WeatherDataWeather>
   @override
   $Res call({
     Object? icon = null,
+    Object? description = null,
   }) {
     return _then(_value.copyWith(
       icon: null == icon
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -69,7 +75,7 @@ abstract class _$$WeatherDataWeatherImplCopyWith<$Res>
       __$$WeatherDataWeatherImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String icon});
+  $Res call({String icon, String description});
 }
 
 /// @nodoc
@@ -84,11 +90,16 @@ class __$$WeatherDataWeatherImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? icon = null,
+    Object? description = null,
   }) {
     return _then(_$WeatherDataWeatherImpl(
       icon: null == icon
           ? _value.icon
           : icon // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: null == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -97,17 +108,20 @@ class __$$WeatherDataWeatherImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$WeatherDataWeatherImpl implements _WeatherDataWeather {
-  const _$WeatherDataWeatherImpl({required this.icon});
+  const _$WeatherDataWeatherImpl(
+      {required this.icon, required this.description});
 
   factory _$WeatherDataWeatherImpl.fromJson(Map<String, dynamic> json) =>
       _$$WeatherDataWeatherImplFromJson(json);
 
   @override
   final String icon;
+  @override
+  final String description;
 
   @override
   String toString() {
-    return 'WeatherDataWeather(icon: $icon)';
+    return 'WeatherDataWeather(icon: $icon, description: $description)';
   }
 
   @override
@@ -115,12 +129,14 @@ class _$WeatherDataWeatherImpl implements _WeatherDataWeather {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$WeatherDataWeatherImpl &&
-            (identical(other.icon, icon) || other.icon == icon));
+            (identical(other.icon, icon) || other.icon == icon) &&
+            (identical(other.description, description) ||
+                other.description == description));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, icon);
+  int get hashCode => Object.hash(runtimeType, icon, description);
 
   @JsonKey(ignore: true)
   @override
@@ -138,14 +154,17 @@ class _$WeatherDataWeatherImpl implements _WeatherDataWeather {
 }
 
 abstract class _WeatherDataWeather implements WeatherDataWeather {
-  const factory _WeatherDataWeather({required final String icon}) =
-      _$WeatherDataWeatherImpl;
+  const factory _WeatherDataWeather(
+      {required final String icon,
+      required final String description}) = _$WeatherDataWeatherImpl;
 
   factory _WeatherDataWeather.fromJson(Map<String, dynamic> json) =
       _$WeatherDataWeatherImpl.fromJson;
 
   @override
   String get icon;
+  @override
+  String get description;
   @override
   @JsonKey(ignore: true)
   _$$WeatherDataWeatherImplCopyWith<_$WeatherDataWeatherImpl> get copyWith =>

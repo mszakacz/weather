@@ -5,10 +5,14 @@ void main() {
   group('WeatherDataMain', () {
     const json = <String, dynamic>{
       'temp': 25,
+      'humidity': 69,
+      'pressure': 1015,
     };
 
     WeatherDataMain createSubject() => const WeatherDataMain(
           temp: 25,
+          humidity: 69,
+          pressure: 1015,
         );
 
     group('constructor', () {
