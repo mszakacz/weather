@@ -13,6 +13,7 @@ class WeatherData with _$WeatherData {
     required int dt,
     required WeatherDataMain main,
     required List<WeatherDataWeather> weather,
+    required WeatherDataWind wind,
   }) = _WeatherData;
 
   /// get WeatherData from json

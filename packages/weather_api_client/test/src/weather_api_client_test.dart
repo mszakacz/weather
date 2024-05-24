@@ -52,6 +52,7 @@ void main() {
               {
                 'lat': lat.toString(),
                 'lon': lon.toString(),
+                'units': 'metric',
                 'APPID': '',
               },
             ),
@@ -194,6 +195,11 @@ void main() {
                   description: 'light rain',
                 ),
               ],
+              wind: WeatherDataWind(
+                speed: 0.62,
+                deg: 349,
+                gust: 1.18,
+              ),
             ),
           ],
           city: WeatherDataCity(

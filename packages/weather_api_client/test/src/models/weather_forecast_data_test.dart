@@ -10,6 +10,9 @@ void main() {
     const pressure = 1015;
     const description = 'light rain';
     const icon = 'icon';
+    const windSpeed = 1.14;
+    const windDeg = 17;
+    const windGust = 1.57;
 
     const json = <String, dynamic>{
       'list': [
@@ -26,6 +29,11 @@ void main() {
               'description': description,
             },
           ],
+          'wind': {
+            'speed': windSpeed,
+            'deg': windDeg,
+            'gust': windGust,
+          },
         },
       ],
       'city': {
@@ -51,6 +59,11 @@ void main() {
                   description: description,
                 ),
               ],
+              wind: WeatherDataWind(
+                speed: windSpeed,
+                deg: windDeg,
+                gust: windGust,
+              ),
             ),
           ],
         );
