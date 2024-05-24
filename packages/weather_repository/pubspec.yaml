@@ -11,6 +11,8 @@ dependencies:
   equatable: ^2.0.5
   flutter:
     sdk: flutter
+  location_api_client:
+    path: ../location_api_client
   weather_api_client:
     path: ../weather_api_client
 
