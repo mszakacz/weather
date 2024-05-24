@@ -66,6 +66,10 @@ void main() {
           ).toLocal(),
           temperature: 24,
           iconUrl: '03d',
+          condition: 'light rain',
+          humidity: 69,
+          pressure: 1015,
+          windGust: 2.3,
         ),
       ],
     );

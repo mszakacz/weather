@@ -8,6 +8,10 @@ class Weather extends Equatable {
     required this.time,
     required this.temperature,
     required this.iconUrl,
+    required this.condition,
+    required this.humidity,
+    required this.pressure,
+    required this.windGust,
   });
 
   /// get Weather from WeatherData
@@ -21,6 +25,10 @@ class Weather extends Equatable {
         ).toLocal(),
         temperature: data.main.temp.round(),
         iconUrl: data.weather.first.icon,
+        condition: data.weather.first.description,
+        humidity: data.main.humidity,
+        pressure: data.main.pressure,
+        windGust: data.wind.gust,
       );
 
   /// date
@@ -32,10 +40,26 @@ class Weather extends Equatable {
   /// url to the weather condition image (png)
   final String iconUrl;
 
+  /// Weather condition description
+  final String condition;
+
+  /// Humidity
+  final int humidity;
+
+  /// Pressure
+  final int pressure;
+
+  /// Wind gust
+  final double windGust;
+
   @override
   List<Object> get props => [
         time,
         temperature,
         iconUrl,
+        condition,
+        humidity,
+        pressure,
+        windGust,
       ];
 }
