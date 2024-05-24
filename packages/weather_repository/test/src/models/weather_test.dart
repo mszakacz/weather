@@ -31,6 +31,10 @@ void main() {
           ).toLocal(),
           temperature: 22,
           iconUrl: '03d',
+          condition: 'light rain',
+          humidity: 69,
+          pressure: 1015,
+          windGust: 2.3,
         );
 
     group('constructor', () {
@@ -59,6 +63,10 @@ void main() {
           ).toLocal(),
           22,
           '03d',
+          'light rain',
+          69,
+          1015,
+          2.3,
         ]),
       );
     });
