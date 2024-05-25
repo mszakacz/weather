@@ -29,4 +29,12 @@ class DayWeather extends Equatable {
         minTemperature,
         iconUrl,
       ];
+
+  /// get empty instance of the DayWeather
+  static final empty = DayWeather(
+    day: DateTime(2024),
+    maxTemperature: 20,
+    minTemperature: 16,
+    iconUrl: '',
+  );
 }

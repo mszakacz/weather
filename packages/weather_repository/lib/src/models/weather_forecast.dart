@@ -89,4 +89,10 @@ class WeatherForecast extends Equatable {
     }
     return weekWeather;
   }
+
+  /// get empty instance of the WeatherForecast class
+  static const empty = WeatherForecast(
+    city: '',
+    moments: [],
+  );
 }

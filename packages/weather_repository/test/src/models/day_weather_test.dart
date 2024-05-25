@@ -37,5 +37,18 @@ void main() {
         ]),
       );
     });
+    test('gets empty', () {
+      expect(
+        DayWeather.empty,
+        equals(
+          DayWeather(
+            day: DateTime(2024),
+            maxTemperature: 20,
+            minTemperature: 16,
+            iconUrl: '',
+          ),
+        ),
+      );
+    });
   });
 }
