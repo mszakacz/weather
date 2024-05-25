@@ -1,3 +1,5 @@
+// ignore_for_file: use_named_constants
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:weather_api_client/weather_api_client.dart';
 import 'package:weather_repository/weather_repository.dart';
@@ -207,6 +209,18 @@ void main() {
               iconUrl: '03d',
             ),
           ],
+        ),
+      );
+    });
+
+    test('gets empty', () {
+      expect(
+        WeatherForecast.empty,
+        equals(
+          const WeatherForecast(
+            city: '',
+            moments: [],
+          ),
         ),
       );
     });
