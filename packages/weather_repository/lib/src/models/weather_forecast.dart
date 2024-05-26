@@ -79,9 +79,8 @@ class WeatherForecast extends Equatable {
               )
               .reduce(min),
           iconUrl: dayMoments
-              .firstWhere(
-                (m) => m.time.hour > 10 && m.time.hour < 16,
-                orElse: () => dayMoments.first,
+              .reduce(
+                (cur, next) => cur.temperature > next.temperature ? cur : next,
               )
               .iconUrl,
         ),
