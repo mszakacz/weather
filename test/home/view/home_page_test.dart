@@ -132,6 +132,12 @@ void main() {
       );
     }
 
+    testWidgets('renders WeatherDetailsWidget', (tester) async {
+      when(() => homeBloc.state).thenReturn(state);
+      await tester.pumpApp(buildSubject());
+
+      expect(find.byType(WeatherDetailsWidget), findsOneWidget);
+    });
     testWidgets('renders DaysList', (tester) async {
       when(() => homeBloc.state).thenReturn(state);
       await tester.pumpApp(buildSubject());

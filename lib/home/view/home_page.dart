@@ -75,10 +75,18 @@ class PresentView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: DaysList(
-        days: state.weatherForecast.days,
-      ),
+    return Column(
+      children: [
+        // Weather Details
+        WeatherDetailsWidget(
+          dayWeather: state.selectedDay,
+        ),
+
+        // Days
+        DaysList(
+          days: state.weatherForecast.days,
+        ),
+      ],
     );
   }
 }
