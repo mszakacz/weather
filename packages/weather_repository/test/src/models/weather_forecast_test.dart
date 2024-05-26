@@ -207,6 +207,7 @@ void main() {
               maxTemperature: 24,
               minTemperature: 18,
               iconUrl: 'https://openweathermap.org/img/wn/03d@4x.png',
+              description: 'light rain',
             ),
           ],
         ),
