@@ -65,6 +65,9 @@ class WeatherForecast extends Equatable {
       if (dayMoments.isEmpty) {
         return weekWeather;
       }
+      final keyMoment = dayMoments.reduce(
+        (cur, next) => cur.temperature > next.temperature ? cur : next,
+      );
       weekWeather.add(
         DayWeather(
           day: day,
@@ -78,11 +81,8 @@ class WeatherForecast extends Equatable {
                 (e) => e.temperature,
               )
               .reduce(min),
-          iconUrl: dayMoments
-              .reduce(
-                (cur, next) => cur.temperature > next.temperature ? cur : next,
-              )
-              .iconUrl,
+          iconUrl: keyMoment.iconUrl,
+          description: keyMoment.condition,
         ),
       );
     }
