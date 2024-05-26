@@ -18,7 +18,9 @@ class HomePage extends StatelessWidget {
           const GetWeatherForecast(),
         ),
       child: const Scaffold(
-        body: HomeView(),
+        body: SafeArea(
+          child: HomeView(),
+        ),
       ),
     );
   }
@@ -40,7 +42,9 @@ class HomeView extends StatelessWidget {
             return const ErrorView();
 
           case HomeStatus.present:
-            return const PresentView();
+            return PresentView(
+              state: state,
+            );
         }
       },
     );
@@ -62,13 +66,55 @@ class ErrorView extends StatelessWidget {
 
 @visibleForTesting
 class PresentView extends StatelessWidget {
-  const PresentView({super.key});
+  const PresentView({
+    required this.state,
+    super.key,
+  });
+
+  final HomeState state;
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      // TODO(Maciej): develop PresentView
-      child: Text('Weather'),
+    return Center(
+      child: DaysList(
+        days: state.weatherForecast.days,
+      ),
+    );
+  }
+}
+
+@visibleForTesting
+class DaysList extends StatelessWidget {
+  const DaysList({
+    required this.days,
+    super.key,
+  });
+
+  final List<DayWeather> days;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        children: [
+          ...[
+            const SizedBox(
+              width: AppSpacing.m,
+            ),
+          ],
+          ...days.map(
+            (d) => DayWeatherCard(
+              dayWeather: d,
+            ),
+          ),
+          ...[
+            const SizedBox(
+              width: AppSpacing.m,
+            ),
+          ],
+        ],
+      ),
     );
   }
 }

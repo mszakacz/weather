@@ -24,7 +24,7 @@ class Weather extends Equatable {
           isUtc: true,
         ).toLocal(),
         temperature: data.main.temp.round(),
-        iconUrl: data.weather.first.icon,
+        iconUrl: WeatherApiClient.getIconUrl(data.weather.first.icon),
         condition: data.weather.first.description,
         humidity: data.main.humidity,
         pressure: data.main.pressure,

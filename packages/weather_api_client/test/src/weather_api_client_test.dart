@@ -210,7 +210,7 @@ void main() {
         expect(actual, expected);
       });
     });
-    group('getWeatherForecast', () {
+    group('getIconUrl', () {
       test('returns correct url', () {
         expect(
           WeatherApiClient.getIconUrl('04d'),
