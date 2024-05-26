@@ -111,4 +111,32 @@ void main() {
       expect(find.byType(PresentView), findsOneWidget);
     });
   });
+
+  group('PresentView', () {
+    final state = HomeState(
+      status: HomeStatus.error,
+      weatherForecast: forecast,
+      selectedDay: forecast.days.first,
+    );
+    Widget buildSubject() {
+      final weatherRepository = MockWeatherRepository();
+
+      return RepositoryProvider<WeatherRepository>.value(
+        value: weatherRepository,
+        child: BlocProvider.value(
+          value: homeBloc,
+          child: PresentView(
+            state: state,
+          ),
+        ),
+      );
+    }
+
+    testWidgets('renders DaysList', (tester) async {
+      when(() => homeBloc.state).thenReturn(state);
+      await tester.pumpApp(buildSubject());
+
+      expect(find.byType(DaysList), findsOneWidget);
+    });
+  });
 }
