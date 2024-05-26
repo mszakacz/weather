@@ -8,6 +8,7 @@ void main() {
           maxTemperature: 24,
           minTemperature: 20,
           iconUrl: 'url',
+          description: 'few clouds',
         );
 
     group('constructor', () {
@@ -34,6 +35,7 @@ void main() {
           24,
           20,
           'url',
+          'few clouds',
         ]),
       );
     });
@@ -46,6 +48,7 @@ void main() {
             maxTemperature: 20,
             minTemperature: 16,
             iconUrl: '',
+            description: '',
           ),
         ),
       );
