@@ -13,15 +13,15 @@ abstract class TextStyles {
 
   /// Heading 1
   static final TextStyle h1 = _baseTextStyle.copyWith(
-    fontSize: 50,
-    fontWeight: FontWeight.w700,
+    fontSize: 80,
+    fontWeight: FontWeight.w600,
     height: 1.1,
-    color: AppColor.blueDress,
+    color: AppColor.white,
   );
 
   /// Heading 2
   static final TextStyle h2 = _baseTextStyle.copyWith(
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: FontWeight.w700,
     height: 1.15,
     color: AppColor.blueDress,
