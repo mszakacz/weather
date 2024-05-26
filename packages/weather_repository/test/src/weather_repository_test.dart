@@ -65,7 +65,7 @@ void main() {
             isUtc: true,
           ).toLocal(),
           temperature: 24,
-          iconUrl: '03d',
+          iconUrl: 'https://openweathermap.org/img/wn/03d@4x.png',
           condition: 'light rain',
           humidity: 69,
           pressure: 1015,
