@@ -16,7 +16,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider.value(
+    return RepositoryProvider<WeatherRepository>.value(
       value: _weatherRepository,
       child: MaterialApp(
         theme: AppTheme.normal,
