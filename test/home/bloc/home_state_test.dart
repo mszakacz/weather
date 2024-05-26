@@ -68,6 +68,7 @@ void main() {
               maxTemperature: 20,
               minTemperature: 18,
               iconUrl: 'iconUrl',
+              description: 'few clouds',
             ),
           ),
           equals(
@@ -82,6 +83,7 @@ void main() {
                 maxTemperature: 20,
                 minTemperature: 18,
                 iconUrl: 'iconUrl',
+                description: 'few clouds',
               ),
             ),
           ),
