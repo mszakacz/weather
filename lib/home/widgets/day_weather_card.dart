@@ -18,7 +18,7 @@ class DayWeatherCard extends StatelessWidget {
         horizontal: AppSpacing.xs,
       ),
       decoration: const BoxDecoration(
-        color: AppColor.lightBlue,
+        color: AppColor.lightBlue3,
         borderRadius: BorderRadius.all(
           Radius.circular(AppSpacing.l),
         ),
