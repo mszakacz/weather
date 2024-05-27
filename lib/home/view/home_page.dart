@@ -77,6 +77,8 @@ class PresentView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const SizedBox(height: AppSpacing.s),
+
         // Location
         LocationWidget(
           city: state.weatherForecast.city,
@@ -90,7 +92,10 @@ class PresentView extends StatelessWidget {
         // Days
         DaysList(
           days: state.weatherForecast.days,
+          selected: state.selectedDay,
         ),
+
+        const SizedBox(height: AppSpacing.s),
       ],
     );
   }
@@ -127,10 +132,12 @@ class LocationWidget extends StatelessWidget {
 class DaysList extends StatelessWidget {
   const DaysList({
     required this.days,
+    required this.selected,
     super.key,
   });
 
   final List<DayWeather> days;
+  final DayWeather selected;
 
   @override
   Widget build(BuildContext context) {
@@ -146,6 +153,7 @@ class DaysList extends StatelessWidget {
           ...days.map(
             (d) => DayWeatherCard(
               dayWeather: d,
+              isSelected: d == selected,
               onTap: (selected) {
                 context.read<HomeBloc>().add(
                       SelectDay(dayWeather: selected),
