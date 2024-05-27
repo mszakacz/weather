@@ -2,6 +2,7 @@ import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather/home/home.dart';
+import 'package:weather/l10n/l10n.dart';
 import 'package:weather_repository/weather_repository.dart';
 
 class HomePage extends StatelessWidget {
@@ -57,9 +58,31 @@ class ErrorView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      // TODO(Maciej): develop ErrorView text
-      child: Text('Error'),
+    final l10n = context.l10n;
+    return Center(
+      child: Container(
+        margin: const EdgeInsets.all(AppSpacing.l),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              l10n.sthWentWrong,
+              style: TextStyles.h3white,
+            ),
+            const SizedBox(
+              height: AppSpacing.xl,
+            ),
+            Button(
+              text: l10n.retry,
+              onTap: () {
+                context.read<HomeBloc>().add(
+                      const GetWeatherForecast(),
+                    );
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

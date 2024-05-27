@@ -15,6 +15,11 @@ class AppTheme {
         ),
       ),
       scaffoldBackgroundColor: AppColor.lightBlue4,
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColor.white2,
+        ),
+      ),
     );
   }
 }
