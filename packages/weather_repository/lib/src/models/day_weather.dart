@@ -8,7 +8,10 @@ class DayWeather extends Equatable {
     required this.maxTemperature,
     required this.minTemperature,
     required this.iconUrl,
-    required this.description,
+    required this.condition,
+    required this.humidity,
+    required this.pressure,
+    required this.windGust,
   });
 
   /// Day
@@ -23,8 +26,17 @@ class DayWeather extends Equatable {
   /// Icon url
   final String iconUrl;
 
-  /// Weather conditions description
-  final String description;
+  /// Weather condition description
+  final String condition;
+
+  /// Humidity
+  final int humidity;
+
+  /// Pressure
+  final int pressure;
+
+  /// Wind gust
+  final double windGust;
 
   @override
   List<Object> get props => [
@@ -32,7 +44,10 @@ class DayWeather extends Equatable {
         maxTemperature,
         minTemperature,
         iconUrl,
-        description,
+        condition,
+        humidity,
+        pressure,
+        windGust,
       ];
 
   /// get empty instance of the DayWeather
@@ -41,6 +56,9 @@ class DayWeather extends Equatable {
     maxTemperature: 20,
     minTemperature: 16,
     iconUrl: '',
-    description: '',
+    condition: '',
+    humidity: 0,
+    pressure: 0,
+    windGust: 0,
   );
 }
