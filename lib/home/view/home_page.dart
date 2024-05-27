@@ -75,28 +75,48 @@ class PresentView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(height: AppSpacing.s),
+    return LayoutBuilder(
+      builder: (ctx, constraints) => RefreshIndicator(
+        onRefresh: () async => context.read<HomeBloc>().add(
+              const GetWeatherForecast(),
+            ),
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: constraints.maxHeight,
+            ),
+            child: SafeArea(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const SizedBox(height: AppSpacing.s),
 
-        // Location
-        LocationWidget(
-          city: state.weatherForecast.city,
+                  // Location
+                  LocationWidget(
+                    city: state.weatherForecast.city,
+                  ),
+
+                  const SizedBox(height: AppSpacing.m),
+
+                  // Weather Details
+                  WeatherDetailsWidget(
+                    dayWeather: state.selectedDay,
+                  ),
+
+                  // Days
+                  DaysList(
+                    days: state.weatherForecast.days,
+                    selected: state.selectedDay,
+                  ),
+
+                  const SizedBox(height: AppSpacing.s),
+                ],
+              ),
+            ),
+          ),
         ),
-
-        // Weather Details
-        WeatherDetailsWidget(
-          dayWeather: state.selectedDay,
-        ),
-
-        // Days
-        DaysList(
-          days: state.weatherForecast.days,
-          selected: state.selectedDay,
-        ),
-
-        const SizedBox(height: AppSpacing.s),
-      ],
+      ),
     );
   }
 }
