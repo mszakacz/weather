@@ -1,5 +1,12 @@
 # Weather Mobile App
 
+## App Overview
+Mobile app presents Weather Forecast for 5 next days. 
+
+<img src="https://github.com/mszakacz/weather/assets/38291070/92f78bb9-b427-4d9a-bd4e-965980a77bad" width="300">
+<!-- ![Simulator Screenshot - iPhone 15 Pro - 2024-05-27 at 11 53 12](https://github.com/mszakacz/weather/assets/38291070/92f78bb9-b427-4d9a-bd4e-965980a77bad) -->
+
+
 ## API KEY
 ### Weather API Key
 1) Get your own API Key from https://openweathermap.org/api [OpenWeatherMap](https://openweathermap.org/api)
