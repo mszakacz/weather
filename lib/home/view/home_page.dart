@@ -115,8 +115,8 @@ class PresentView extends StatelessWidget {
                 children: [
                   const SizedBox(height: AppSpacing.s),
 
-                  // Location
-                  LocationWidget(
+                  // Location And Settings
+                  TopBar(
                     city: state.weatherForecast.city,
                   ),
 
@@ -140,6 +140,39 @@ class PresentView extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+@visibleForTesting
+class TopBar extends StatelessWidget {
+  const TopBar({
+    required this.city,
+    super.key,
+  });
+
+  final String city;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        const Spacer(),
+        LocationWidget(
+          city: city,
+        ),
+        Expanded(
+          child: Align(
+            alignment: Alignment.centerRight,
+            child: IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.settings_outlined,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
