@@ -65,6 +65,25 @@ void main() {
             gust: 2.3,
           ),
         ),
+        WeatherData(
+          dt: 1716400800,
+          main: WeatherDataMain(
+            temp: 18,
+            humidity: 69,
+            pressure: 1015,
+          ),
+          weather: [
+            WeatherDataWeather(
+              icon: '03d',
+              description: 'light rain',
+            ),
+          ],
+          wind: WeatherDataWind(
+            speed: 1.1,
+            deg: 120,
+            gust: 2.3,
+          ),
+        ),
       ],
       city: WeatherDataCity(name: 'Warsaw'),
     );
@@ -102,6 +121,18 @@ void main() {
                 isUtc: true,
               ).toLocal(),
               temperature: 22,
+              iconUrl: 'https://openweathermap.org/img/wn/03d@4x.png',
+              condition: 'light rain',
+              humidity: 69,
+              pressure: 1015,
+              windGust: 2.3,
+            ),
+            Weather(
+              time: DateTime.fromMillisecondsSinceEpoch(
+                1716400800000,
+                isUtc: true,
+              ).toLocal(),
+              temperature: 18,
               iconUrl: 'https://openweathermap.org/img/wn/03d@4x.png',
               condition: 'light rain',
               humidity: 69,
@@ -163,6 +194,18 @@ void main() {
                 isUtc: true,
               ).toLocal(),
               temperature: 22,
+              iconUrl: 'https://openweathermap.org/img/wn/03d@4x.png',
+              condition: 'light rain',
+              humidity: 69,
+              pressure: 1015,
+              windGust: 2.3,
+            ),
+            Weather(
+              time: DateTime.fromMillisecondsSinceEpoch(
+                1716400800000,
+                isUtc: true,
+              ).toLocal(),
+              temperature: 18,
               iconUrl: 'https://openweathermap.org/img/wn/03d@4x.png',
               condition: 'light rain',
               humidity: 69,
