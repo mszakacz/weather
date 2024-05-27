@@ -12,7 +12,7 @@ class LoadingView extends StatelessWidget {
     return Center(
       child: LoadingAnimationWidget.threeRotatingDots(
         key: const Key('LoadingView'),
-        color: AppColor.blue,
+        color: AppColor.blue3,
         size: 150,
       ),
     );
