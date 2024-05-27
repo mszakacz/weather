@@ -2,6 +2,7 @@
     "@@locale": "en",
     "windGust": "Wind gust",
     "humidity": "Humidity",
-    "pressure": "Pressure"
-
+    "pressure": "Pressure",
+    "sthWentWrong": "Ups... Something went wrong",
+    "retry": "Retry"
 }
