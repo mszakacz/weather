@@ -68,18 +68,22 @@ class WeatherForecast extends Equatable {
       final keyMoment = dayMoments.reduce(
         (cur, next) => cur.temperature > next.temperature ? cur : next,
       );
-      weekWeather.add(
-        DayWeather(
-          day: day,
-          maxTemperature: dayMoments.map((e) => e.temperature).reduce(max),
-          minTemperature: dayMoments.map((e) => e.temperature).reduce(min),
-          iconUrl: keyMoment.iconUrl,
-          condition: keyMoment.condition,
-          humidity: keyMoment.humidity,
-          pressure: keyMoment.pressure,
-          windGust: dayMoments.map((e) => e.windGust).reduce(max),
-        ),
-      );
+      // it counts as a day only if a forecast contains at least half a day
+      // (at least 4 moments)
+      if (dayMoments.length >= 4) {
+        weekWeather.add(
+          DayWeather(
+            day: day,
+            maxTemperature: dayMoments.map((e) => e.temperature).reduce(max),
+            minTemperature: dayMoments.map((e) => e.temperature).reduce(min),
+            iconUrl: keyMoment.iconUrl,
+            condition: keyMoment.condition,
+            humidity: keyMoment.humidity,
+            pressure: keyMoment.pressure,
+            windGust: dayMoments.map((e) => e.windGust).reduce(max),
+          ),
+        );
+      }
     }
     return weekWeather;
   }
