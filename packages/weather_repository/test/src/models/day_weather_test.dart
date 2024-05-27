@@ -8,7 +8,10 @@ void main() {
           maxTemperature: 24,
           minTemperature: 20,
           iconUrl: 'url',
-          description: 'few clouds',
+          condition: 'few clouds',
+          humidity: 69,
+          pressure: 1015,
+          windGust: 2.3,
         );
 
     group('constructor', () {
@@ -36,6 +39,9 @@ void main() {
           20,
           'url',
           'few clouds',
+          69,
+          1015,
+          2.3,
         ]),
       );
     });
@@ -48,7 +54,10 @@ void main() {
             maxTemperature: 20,
             minTemperature: 16,
             iconUrl: '',
-            description: '',
+            condition: '',
+            humidity: 0,
+            pressure: 0,
+            windGust: 0,
           ),
         ),
       );

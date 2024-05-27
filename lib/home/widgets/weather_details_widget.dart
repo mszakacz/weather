@@ -36,7 +36,7 @@ class WeatherDetailsWidget extends StatelessWidget {
 
           // Weather Condition Description
           Text(
-            dayWeather.description.capitalize(),
+            dayWeather.condition.capitalize(),
             style: TextStyles.h2,
           ),
         ],
