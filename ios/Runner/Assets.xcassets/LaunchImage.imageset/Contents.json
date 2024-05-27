@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "LaunchImage@1x.png",
+      "filename" : "weather_icon.jpeg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "LaunchImage@2x.png",
+      "filename" : "weather_icon 1.jpeg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "LaunchImage@3x.png",
+      "filename" : "weather_icon 2.jpeg",
       "idiom" : "universal",
       "scale" : "3x"
     }
