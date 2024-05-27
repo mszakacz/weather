@@ -168,11 +168,11 @@ void main() {
       );
     }
 
-    testWidgets('renders LocationWidget', (tester) async {
+    testWidgets('renders TopBar', (tester) async {
       when(() => homeBloc.state).thenReturn(state);
       await tester.pumpApp(buildSubject());
 
-      expect(find.byType(LocationWidget), findsOneWidget);
+      expect(find.byType(TopBar), findsOneWidget);
     });
 
     testWidgets('renders WeatherDetailsWidget', (tester) async {
@@ -186,6 +186,34 @@ void main() {
       await tester.pumpApp(buildSubject());
 
       expect(find.byType(DaysList), findsOneWidget);
+    });
+  });
+
+  group('TopBar', () {
+    final state = HomeState(
+      status: HomeStatus.error,
+      weatherForecast: forecast,
+      selectedDay: forecast.days.first,
+    );
+    Widget buildSubject() {
+      final weatherRepository = MockWeatherRepository();
+
+      return RepositoryProvider<WeatherRepository>.value(
+        value: weatherRepository,
+        child: BlocProvider.value(
+          value: homeBloc,
+          child: TopBar(
+            city: state.weatherForecast.city,
+          ),
+        ),
+      );
+    }
+
+    testWidgets('renders LocationWidget', (tester) async {
+      when(() => homeBloc.state).thenReturn(state);
+      await tester.pumpApp(buildSubject());
+
+      expect(find.byType(LocationWidget), findsOneWidget);
     });
   });
 
