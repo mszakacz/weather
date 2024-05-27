@@ -77,6 +77,11 @@ class PresentView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        // Location
+        LocationWidget(
+          city: state.weatherForecast.city,
+        ),
+
         // Weather Details
         WeatherDetailsWidget(
           dayWeather: state.selectedDay,
@@ -85,6 +90,33 @@ class PresentView extends StatelessWidget {
         // Days
         DaysList(
           days: state.weatherForecast.days,
+        ),
+      ],
+    );
+  }
+}
+
+@visibleForTesting
+class LocationWidget extends StatelessWidget {
+  const LocationWidget({
+    required this.city,
+    super.key,
+  });
+
+  final String city;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Icon(
+          Icons.place_outlined,
+          color: AppColor.blue3,
+        ),
+        Text(
+          city,
+          style: TextStyles.h3blue,
         ),
       ],
     );

@@ -132,6 +132,13 @@ void main() {
       );
     }
 
+    testWidgets('renders LocationWidget', (tester) async {
+      when(() => homeBloc.state).thenReturn(state);
+      await tester.pumpApp(buildSubject());
+
+      expect(find.byType(LocationWidget), findsOneWidget);
+    });
+
     testWidgets('renders WeatherDetailsWidget', (tester) async {
       when(() => homeBloc.state).thenReturn(state);
       await tester.pumpApp(buildSubject());
@@ -143,6 +150,40 @@ void main() {
       await tester.pumpApp(buildSubject());
 
       expect(find.byType(DaysList), findsOneWidget);
+    });
+  });
+
+  group('LocationWidget', () {
+    final state = HomeState(
+      status: HomeStatus.error,
+      weatherForecast: forecast,
+      selectedDay: forecast.days.first,
+    );
+    const city = 'San Francisco';
+    Widget buildSubject() {
+      final weatherRepository = MockWeatherRepository();
+
+      return RepositoryProvider<WeatherRepository>.value(
+        value: weatherRepository,
+        child: BlocProvider.value(
+          value: homeBloc,
+          child: const LocationWidget(
+            city: city,
+          ),
+        ),
+      );
+    }
+
+    testWidgets('renders Text with correct city name', (tester) async {
+      when(() => homeBloc.state).thenReturn(state);
+      await tester.pumpApp(buildSubject());
+
+      expect(find.byType(Text), findsOneWidget);
+      final textWidget = tester.widget<Text>(
+        find.byType(Text),
+      );
+
+      expect(textWidget.data, city);
     });
   });
 }
