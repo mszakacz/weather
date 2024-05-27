@@ -11,3 +11,16 @@ class GetWeatherForecast extends HomeEvent {
   @override
   List<Object?> get props => [];
 }
+
+class SelectDay extends HomeEvent {
+  const SelectDay({
+    required this.dayWeather,
+  });
+
+  final DayWeather dayWeather;
+
+  @override
+  List<Object?> get props => [
+        dayWeather,
+      ];
+}

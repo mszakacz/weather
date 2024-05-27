@@ -139,5 +139,37 @@ void main() {
         ],
       );
     });
+
+    group('SelectDay', () {
+      final dayWeather = DayWeather(
+        day: DateTime(2024, 5, 22),
+        maxTemperature: 24,
+        minTemperature: 20,
+        iconUrl: 'url',
+        condition: 'few clouds',
+        humidity: 69,
+        pressure: 1015,
+        windGust: 2.3,
+      );
+      blocTest<HomeBloc, HomeState>(
+        'emits new state with updated selectedDay',
+        build: buildBloc,
+        seed: () => HomeState(
+          status: HomeStatus.present,
+          weatherForecast: WeatherForecast.empty,
+          selectedDay: DayWeather.empty,
+        ),
+        act: (bloc) => bloc.add(
+          SelectDay(dayWeather: dayWeather),
+        ),
+        expect: () => [
+          HomeState(
+            status: HomeStatus.present,
+            weatherForecast: WeatherForecast.empty,
+            selectedDay: dayWeather,
+          ),
+        ],
+      );
+    });
   });
 }
