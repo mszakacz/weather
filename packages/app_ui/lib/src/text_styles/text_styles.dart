@@ -24,7 +24,7 @@ abstract class TextStyles {
     fontSize: 20,
     fontWeight: FontWeight.w700,
     height: 1.15,
-    color: AppColor.blueDress,
+    color: AppColor.blue3,
   );
 
   /// Heading 3 - blue color
@@ -32,7 +32,7 @@ abstract class TextStyles {
     fontSize: 16,
     fontWeight: FontWeight.w700,
     height: 1.15,
-    color: AppColor.blueDress,
+    color: AppColor.blue3,
   );
 
   /// Heading 3 - white color
@@ -41,5 +41,19 @@ abstract class TextStyles {
     fontWeight: FontWeight.w700,
     height: 1.15,
     color: AppColor.white,
+  );
+
+  /// Heading 4
+  static final TextStyle h4 = _baseTextStyle.copyWith(
+    fontSize: 14,
+    fontWeight: FontWeight.w700,
+    color: AppColor.blue3,
+  );
+
+  /// Heading 5
+  static final TextStyle h5 = _baseTextStyle.copyWith(
+    fontSize: 12,
+    fontWeight: FontWeight.w700,
+    color: AppColor.blue1,
   );
 }

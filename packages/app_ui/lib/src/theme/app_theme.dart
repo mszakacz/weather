@@ -14,12 +14,7 @@ class AppTheme {
           borderRadius: BorderRadius.circular(16),
         ),
       ),
-      scaffoldBackgroundColor: AppColor.crystalBlue,
-      cardTheme: const CardTheme(
-        color: AppColor.lightBlue,
-        surfaceTintColor: Colors.transparent,
-        elevation: 0,
-      ),
+      scaffoldBackgroundColor: AppColor.lightBlue4,
     );
   }
 }
