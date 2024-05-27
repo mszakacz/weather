@@ -59,6 +59,18 @@ void main() {
           pressure: 1015,
           windGust: 2.3,
         ),
+        Weather(
+          time: DateTime.fromMillisecondsSinceEpoch(
+            1716400800000,
+            isUtc: true,
+          ).toLocal(),
+          temperature: 18,
+          iconUrl: '03d',
+          condition: 'light rain',
+          humidity: 69,
+          pressure: 1015,
+          windGust: 2.3,
+        ),
       ],
     );
 
