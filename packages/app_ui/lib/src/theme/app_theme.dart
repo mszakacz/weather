@@ -20,6 +20,10 @@ class AppTheme {
           backgroundColor: AppColor.white2,
         ),
       ),
+      iconTheme: const IconThemeData(
+        color: AppColor.lightBlue1,
+        size: 24,
+      ),
     );
   }
 }
