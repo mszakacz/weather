@@ -21,11 +21,47 @@ void main() {
     moments: [
       Weather(
         time: DateTime.fromMillisecondsSinceEpoch(
-          1716390000000,
+          1716368400000,
+          isUtc: true,
+        ).toLocal(),
+        temperature: 18,
+        iconUrl: 'https://openweathermap.org/img/wn/03d@4x.png',
+        condition: 'light rain',
+        humidity: 69,
+        pressure: 1015,
+        windGust: 2.3,
+      ),
+      Weather(
+        time: DateTime.fromMillisecondsSinceEpoch(
+          1716379200000,
           isUtc: true,
         ).toLocal(),
         temperature: 24,
-        iconUrl: '03d',
+        iconUrl: 'https://openweathermap.org/img/wn/03d@4x.png',
+        condition: 'light rain',
+        humidity: 69,
+        pressure: 1015,
+        windGust: 2.3,
+      ),
+      Weather(
+        time: DateTime.fromMillisecondsSinceEpoch(
+          1716390000000,
+          isUtc: true,
+        ).toLocal(),
+        temperature: 22,
+        iconUrl: 'https://openweathermap.org/img/wn/03d@4x.png',
+        condition: 'light rain',
+        humidity: 69,
+        pressure: 1015,
+        windGust: 2.3,
+      ),
+      Weather(
+        time: DateTime.fromMillisecondsSinceEpoch(
+          1716400800000,
+          isUtc: true,
+        ).toLocal(),
+        temperature: 18,
+        iconUrl: 'https://openweathermap.org/img/wn/03d@4x.png',
         condition: 'light rain',
         humidity: 69,
         pressure: 1015,
@@ -184,6 +220,40 @@ void main() {
       );
 
       expect(textWidget.data, city);
+    });
+  });
+
+  group('ErrorView', () {
+    final state = HomeState(
+      status: HomeStatus.error,
+      weatherForecast: forecast,
+      selectedDay: forecast.days.first,
+    );
+
+    Widget buildSubject() {
+      final weatherRepository = MockWeatherRepository();
+
+      return RepositoryProvider<WeatherRepository>.value(
+        value: weatherRepository,
+        child: BlocProvider.value(
+          value: homeBloc,
+          child: const ErrorView(),
+        ),
+      );
+    }
+
+    testWidgets('renders retry Button', (tester) async {
+      when(() => homeBloc.state).thenReturn(state);
+      await tester.pumpApp(buildSubject());
+
+      expect(find.byType(Button), findsOneWidget);
+    });
+
+    testWidgets('renders error Text', (tester) async {
+      when(() => homeBloc.state).thenReturn(state);
+      await tester.pumpApp(buildSubject());
+
+      expect(find.text('Ups... Something went wrong'), findsOneWidget);
     });
   });
 }
