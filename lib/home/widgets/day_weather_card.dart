@@ -6,11 +6,13 @@ class DayWeatherCard extends StatelessWidget {
   const DayWeatherCard({
     required this.dayWeather,
     required this.onTap,
+    required this.isSelected,
     super.key,
   });
 
   final DayWeather dayWeather;
   final void Function(DayWeather) onTap;
+  final bool isSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +23,9 @@ class DayWeatherCard extends StatelessWidget {
         margin: const EdgeInsets.symmetric(
           horizontal: AppSpacing.xs,
         ),
-        decoration: const BoxDecoration(
-          color: AppColor.lightBlue3,
-          borderRadius: BorderRadius.all(
+        decoration: BoxDecoration(
+          color: isSelected ? AppColor.lightBlue3 : AppColor.blue1,
+          borderRadius: const BorderRadius.all(
             Radius.circular(AppSpacing.l),
           ),
         ),
