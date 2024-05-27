@@ -71,18 +71,13 @@ class WeatherForecast extends Equatable {
       weekWeather.add(
         DayWeather(
           day: day,
-          maxTemperature: dayMoments
-              .map(
-                (e) => e.temperature,
-              )
-              .reduce(max),
-          minTemperature: dayMoments
-              .map(
-                (e) => e.temperature,
-              )
-              .reduce(min),
+          maxTemperature: dayMoments.map((e) => e.temperature).reduce(max),
+          minTemperature: dayMoments.map((e) => e.temperature).reduce(min),
           iconUrl: keyMoment.iconUrl,
-          description: keyMoment.condition,
+          condition: keyMoment.condition,
+          humidity: keyMoment.humidity,
+          pressure: keyMoment.pressure,
+          windGust: dayMoments.map((e) => e.windGust).reduce(max),
         ),
       );
     }
