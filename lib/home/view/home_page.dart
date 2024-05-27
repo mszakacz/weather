@@ -146,6 +146,11 @@ class DaysList extends StatelessWidget {
           ...days.map(
             (d) => DayWeatherCard(
               dayWeather: d,
+              onTap: (selected) {
+                context.read<HomeBloc>().add(
+                      SelectDay(dayWeather: selected),
+                    );
+              },
             ),
           ),
           ...[
