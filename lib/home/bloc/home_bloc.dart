@@ -18,6 +18,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
           ),
         ) {
     on<GetWeatherForecast>(_onGetWeatherForecast);
+    on<SelectDay>(_onSelectDay);
   }
 
   final WeatherRepository _weatherRepository;
@@ -49,5 +50,16 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         ),
       );
     }
+  }
+
+  void _onSelectDay(
+    SelectDay event,
+    Emitter<HomeState> emit,
+  ) {
+    emit(
+      state.copyWith(
+        selectedDay: event.dayWeather,
+      ),
+    );
   }
 }
