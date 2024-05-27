@@ -13,38 +13,36 @@ class WeatherDetailsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          // Day
-          Text(
-            dayWeather.day.longDate,
-            style: TextStyles.h3white,
-          ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        // Day
+        Text(
+          dayWeather.day.longDate,
+          style: TextStyles.h3white,
+        ),
 
-          // Icon
-          CachedImg(
-            imageUrl: dayWeather.iconUrl,
-          ),
+        // Icon
+        CachedImg(
+          imageUrl: dayWeather.iconUrl,
+        ),
 
-          // Temperature
-          Text(
-            '${dayWeather.maxTemperature.toStringAsFixed(0)}°',
-            style: TextStyles.h1,
-          ),
+        // Temperature
+        Text(
+          '${dayWeather.maxTemperature.toStringAsFixed(0)}°',
+          style: TextStyles.h1,
+        ),
 
-          // Weather Condition Description
-          Text(
-            dayWeather.condition.capitalize(),
-            style: TextStyles.h2,
-          ),
+        // Weather Condition Description
+        Text(
+          dayWeather.condition.capitalize(),
+          style: TextStyles.h2,
+        ),
 
-          // Parameters: Humidity, Pressure and Wind
-          WeatherDetailsParameters(dayWeather: dayWeather),
-        ],
-      ),
+        // Parameters: Humidity, Pressure and Wind
+        WeatherDetailsParameters(dayWeather: dayWeather),
+      ],
     );
   }
 }
