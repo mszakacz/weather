@@ -11,7 +11,7 @@ Mobile app presents Weather Forecast for 5 next days.
 1) Get your own API Key from https://openweathermap.org/api [OpenWeatherMap](https://openweathermap.org/api)
 2) Create `api_keys.json` at the very top level of the project and store there the API Key
 <pre>{
-    "WEATHER_API_KEY": "<your_API_KEY>"
+    "WEATHER_API_KEY": "< your_API_KEY >"
 }</pre>
 3) Use `--dart-define` to pass the API Key to the build
 e.g: `flutter run --dart-define-from-file=api_keys.json`
