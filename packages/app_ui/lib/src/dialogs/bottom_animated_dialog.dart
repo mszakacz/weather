@@ -12,7 +12,6 @@ class BottomAnimatedDialog {
     showGeneralDialog(
       barrierLabel: 'BottomAnimatedDialog',
       barrierDismissible: true,
-      // barrierColor: AppColor.black.withOpacity(0.5),
       transitionDuration: const Duration(milliseconds: 500),
       context: context,
       pageBuilder: (_, anim1, anim2) {
