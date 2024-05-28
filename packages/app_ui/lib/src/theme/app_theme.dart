@@ -24,6 +24,13 @@ class AppTheme {
         color: AppColor.lightBlue1,
         size: 24,
       ),
+      dialogBackgroundColor: AppColor.white2,
+      dialogTheme: const DialogTheme(
+        backgroundColor: AppColor.white2,
+        elevation: 5,
+        surfaceTintColor: Colors.transparent,
+        shadowColor: AppColor.black,
+      ),
     );
   }
 }

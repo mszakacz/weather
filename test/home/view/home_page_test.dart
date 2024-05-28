@@ -77,6 +77,7 @@ void main() {
         status: HomeStatus.loading,
         weatherForecast: WeatherForecast.empty,
         selectedDay: DayWeather.empty,
+        units: Units.metric,
       ),
     );
   });
@@ -127,6 +128,7 @@ void main() {
           status: HomeStatus.error,
           weatherForecast: WeatherForecast.empty,
           selectedDay: DayWeather.empty,
+          units: Units.metric,
         ),
       );
       await tester.pumpApp(buildSubject());
@@ -140,6 +142,7 @@ void main() {
           status: HomeStatus.present,
           weatherForecast: forecast,
           selectedDay: forecast.days.first,
+          units: Units.metric,
         ),
       );
       await tester.pumpApp(buildSubject());
@@ -153,6 +156,7 @@ void main() {
       status: HomeStatus.error,
       weatherForecast: forecast,
       selectedDay: forecast.days.first,
+      units: Units.metric,
     );
     Widget buildSubject() {
       final weatherRepository = MockWeatherRepository();
@@ -194,6 +198,7 @@ void main() {
       status: HomeStatus.error,
       weatherForecast: forecast,
       selectedDay: forecast.days.first,
+      units: Units.metric,
     );
     Widget buildSubject() {
       final weatherRepository = MockWeatherRepository();
@@ -204,6 +209,7 @@ void main() {
           value: homeBloc,
           child: TopBar(
             city: state.weatherForecast.city,
+            units: Units.metric,
           ),
         ),
       );
@@ -222,6 +228,7 @@ void main() {
       status: HomeStatus.error,
       weatherForecast: forecast,
       selectedDay: forecast.days.first,
+      units: Units.metric,
     );
     const city = 'San Francisco';
     Widget buildSubject() {
@@ -256,6 +263,7 @@ void main() {
       status: HomeStatus.error,
       weatherForecast: forecast,
       selectedDay: forecast.days.first,
+      units: Units.metric,
     );
 
     Widget buildSubject() {

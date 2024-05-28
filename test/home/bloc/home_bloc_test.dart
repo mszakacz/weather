@@ -10,6 +10,8 @@ void main() {
   group('HomeBloc', () {
     late MockWeatherRepository weatherRepository;
 
+    const units = Units.metric;
+
     setUp(() {
       weatherRepository = MockWeatherRepository();
     });
@@ -87,6 +89,7 @@ void main() {
               status: HomeStatus.loading,
               weatherForecast: WeatherForecast.empty,
               selectedDay: DayWeather.empty,
+              units: units,
             ),
           ),
         );
@@ -108,6 +111,7 @@ void main() {
           status: HomeStatus.loading,
           weatherForecast: WeatherForecast.empty,
           selectedDay: DayWeather.empty,
+          units: units,
         ),
         act: (bloc) => bloc.add(
           const GetWeatherForecast(),
@@ -117,6 +121,7 @@ void main() {
             status: HomeStatus.present,
             weatherForecast: response,
             selectedDay: response.days.first,
+            units: units,
           ),
         ],
         verify: (bloc) {
@@ -138,6 +143,7 @@ void main() {
           status: HomeStatus.loading,
           weatherForecast: WeatherForecast.empty,
           selectedDay: DayWeather.empty,
+          units: units,
         ),
         act: (bloc) => bloc.add(
           const GetWeatherForecast(),
@@ -147,6 +153,7 @@ void main() {
             status: HomeStatus.error,
             weatherForecast: WeatherForecast.empty,
             selectedDay: DayWeather.empty,
+            units: units,
           ),
         ],
       );
@@ -170,6 +177,7 @@ void main() {
           status: HomeStatus.present,
           weatherForecast: WeatherForecast.empty,
           selectedDay: DayWeather.empty,
+          units: units,
         ),
         act: (bloc) => bloc.add(
           SelectDay(dayWeather: dayWeather),
@@ -179,6 +187,7 @@ void main() {
             status: HomeStatus.present,
             weatherForecast: WeatherForecast.empty,
             selectedDay: dayWeather,
+            units: units,
           ),
         ],
       );

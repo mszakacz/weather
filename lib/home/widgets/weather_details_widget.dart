@@ -1,15 +1,18 @@
 import 'package:app_ui/app_ui.dart';
 import 'package:flutter/material.dart';
+import 'package:weather/extensions/extensions.dart';
 import 'package:weather/l10n/l10n.dart';
 import 'package:weather_repository/weather_repository.dart';
 
 class WeatherDetailsWidget extends StatelessWidget {
   const WeatherDetailsWidget({
     required this.dayWeather,
+    required this.units,
     super.key,
   });
 
   final DayWeather dayWeather;
+  final Units units;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +44,10 @@ class WeatherDetailsWidget extends StatelessWidget {
         ),
 
         // Parameters: Humidity, Pressure and Wind
-        WeatherDetailsParameters(dayWeather: dayWeather),
+        WeatherDetailsParameters(
+          dayWeather: dayWeather,
+          units: units,
+        ),
       ],
     );
   }
@@ -51,10 +57,12 @@ class WeatherDetailsWidget extends StatelessWidget {
 class WeatherDetailsParameters extends StatelessWidget {
   const WeatherDetailsParameters({
     required this.dayWeather,
+    required this.units,
     super.key,
   });
 
   final DayWeather dayWeather;
+  final Units units;
 
   @override
   Widget build(BuildContext context) {
@@ -81,9 +89,9 @@ class WeatherDetailsParameters extends StatelessWidget {
           // Wind Gust
           WeatherParameterItem(
             label: l10n.windGust,
-            value: dayWeather.windGust,
+            value: dayWeather.windGust.round(),
             icon: Icons.air_outlined,
-            units: 'm/s',
+            units: units.speedUnit(),
           ),
 
           // Humidity

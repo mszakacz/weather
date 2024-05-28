@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:local_storage/local_storage.dart';
 import 'package:location_api_client/location_api_client.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:weather_api_client/weather_api_client.dart';
@@ -8,10 +9,13 @@ class MockWeatherApiClient extends Mock implements WeatherApiClient {}
 
 class MockLocationApiClient extends Mock implements LocationApiClient {}
 
+class MockLocalStorage extends Mock implements LocalStorage {}
+
 void main() {
   group('WeatherRepository', () {
     late MockWeatherApiClient mockWeatherApiClient;
     late MockLocationApiClient mockLocationApiClient;
+    late MockLocalStorage mockLocalStorage;
 
     late WeatherRepository repository;
 
@@ -77,15 +81,18 @@ void main() {
     setUp(() {
       mockWeatherApiClient = MockWeatherApiClient();
       mockLocationApiClient = MockLocationApiClient();
+      mockLocalStorage = MockLocalStorage();
       repository = WeatherRepository(
         weatherApiClient: mockWeatherApiClient,
         locationApiClient: mockLocationApiClient,
+        localStorage: mockLocalStorage,
       );
     });
 
     WeatherRepository createSubject() => WeatherRepository(
           weatherApiClient: mockWeatherApiClient,
           locationApiClient: mockLocationApiClient,
+          localStorage: mockLocalStorage,
         );
 
     group('constructor', () {
@@ -94,6 +101,7 @@ void main() {
           WeatherRepository(
             weatherApiClient: mockWeatherApiClient,
             locationApiClient: mockLocationApiClient,
+            localStorage: mockLocalStorage,
           ),
           isNotNull,
         );
@@ -112,6 +120,7 @@ void main() {
           () => mockWeatherApiClient.getWeatherForecast(
             lat: lat,
             lon: lon,
+            units: 'metric',
           ),
         ).thenAnswer((_) async => data);
         await repository.getWeatherForecast(
@@ -122,6 +131,7 @@ void main() {
           () => mockWeatherApiClient.getWeatherForecast(
             lat: lat,
             lon: lon,
+            units: 'metric',
           ),
         ).called(1);
       });
@@ -131,6 +141,7 @@ void main() {
           () => mockWeatherApiClient.getWeatherForecast(
             lat: lat,
             lon: lon,
+            units: 'metric',
           ),
         ).thenAnswer((_) async => data);
 
@@ -155,6 +166,7 @@ void main() {
           () => mockWeatherApiClient.getWeatherForecast(
             lat: lat,
             lon: lon,
+            units: 'metric',
           ),
         ).thenAnswer((_) async => data);
 
@@ -174,6 +186,7 @@ void main() {
           () => mockWeatherApiClient.getWeatherForecast(
             lat: lat,
             lon: lon,
+            units: 'metric',
           ),
         ).thenAnswer((_) async => data);
 

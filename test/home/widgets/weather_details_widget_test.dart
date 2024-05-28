@@ -19,7 +19,10 @@ void main() {
     );
     testWidgets('renders WeatherParameterItem 3 times', (tester) async {
       await tester.pumpApp(
-        WeatherDetailsParameters(dayWeather: dayWeather),
+        WeatherDetailsParameters(
+          dayWeather: dayWeather,
+          units: Units.metric,
+        ),
       );
       expect(
         find.byType(WeatherParameterItem),
