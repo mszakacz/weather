@@ -36,6 +36,7 @@ class SettingsDialogContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RadioList<Units>(
+      key: const Key('SettingsDialog_Content_RadioList'),
       values: Units.values,
       selected: selected,
       textBuilder: (u) => u.description(context),

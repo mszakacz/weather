@@ -114,6 +114,7 @@ class DialogTitle extends StatelessWidget {
         Align(
           alignment: Alignment.centerRight,
           child: IconButton(
+            key: const Key('DialogTitle_CloseDialogIconButton'),
             icon: const Icon(
               Icons.close_outlined,
               color: AppColor.blue3,
