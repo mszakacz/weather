@@ -12,6 +12,7 @@ void main() {
 
     setUp(() {
       weatherRepository = MockWeatherRepository();
+      when(() => weatherRepository.getUnits()).thenReturn(Units.metric);
     });
 
     testWidgets('renders HomePage', (tester) async {
