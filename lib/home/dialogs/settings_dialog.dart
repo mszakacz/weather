@@ -14,15 +14,35 @@ class SettingsDialog {
     BottomAnimatedDialog.show(
       context: context,
       title: l10n.units,
-      content: RadioList<Units>(
-        values: Units.values,
+      content: SettingsDialogContent(
+        onChange: onChange,
         selected: selected,
-        textBuilder: (u) => u.description(context),
-        onChange: (u) {
-          onChange(u);
-          Navigator.of(context).pop();
-        },
       ),
+    );
+  }
+}
+
+@visibleForTesting
+class SettingsDialogContent extends StatelessWidget {
+  const SettingsDialogContent({
+    required this.onChange,
+    required this.selected,
+    super.key,
+  });
+
+  final void Function(Units?) onChange;
+  final Units selected;
+
+  @override
+  Widget build(BuildContext context) {
+    return RadioList<Units>(
+      values: Units.values,
+      selected: selected,
+      textBuilder: (u) => u.description(context),
+      onChange: (u) {
+        onChange(u);
+        Navigator.of(context).pop();
+      },
     );
   }
 }
