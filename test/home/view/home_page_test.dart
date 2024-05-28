@@ -173,11 +173,18 @@ void main() {
       );
     }
 
-    testWidgets('renders TopBar', (tester) async {
+    testWidgets('renders LocationWidget', (tester) async {
       when(() => homeBloc.state).thenReturn(state);
       await tester.pumpApp(buildSubject());
 
-      expect(find.byType(TopBar), findsOneWidget);
+      expect(find.byType(LocationWidget), findsOneWidget);
+    });
+
+    testWidgets('renders SettingsIcon', (tester) async {
+      when(() => homeBloc.state).thenReturn(state);
+      await tester.pumpApp(buildSubject());
+
+      expect(find.byType(SettingsIcon), findsOneWidget);
     });
 
     testWidgets('renders WeatherDetailsWidget', (tester) async {
@@ -191,36 +198,6 @@ void main() {
       await tester.pumpApp(buildSubject());
 
       expect(find.byType(DaysList), findsOneWidget);
-    });
-  });
-
-  group('TopBar', () {
-    final state = HomeState(
-      status: HomeStatus.error,
-      weatherForecast: forecast,
-      selectedDay: forecast.days.first,
-      units: Units.metric,
-    );
-    Widget buildSubject() {
-      final weatherRepository = MockWeatherRepository();
-
-      return RepositoryProvider<WeatherRepository>.value(
-        value: weatherRepository,
-        child: BlocProvider.value(
-          value: homeBloc,
-          child: TopBar(
-            city: state.weatherForecast.city,
-            units: Units.metric,
-          ),
-        ),
-      );
-    }
-
-    testWidgets('renders LocationWidget', (tester) async {
-      when(() => homeBloc.state).thenReturn(state);
-      await tester.pumpApp(buildSubject());
-
-      expect(find.byType(LocationWidget), findsOneWidget);
     });
   });
 
@@ -256,6 +233,56 @@ void main() {
       );
 
       expect(textWidget.data, city);
+    });
+  });
+
+  group('SettingsIcon', () {
+    final state = HomeState(
+      status: HomeStatus.error,
+      weatherForecast: forecast,
+      selectedDay: forecast.days.first,
+      units: Units.metric,
+    );
+    const units = Units.metric;
+    Widget buildSubject() {
+      final weatherRepository = MockWeatherRepository();
+
+      return RepositoryProvider<WeatherRepository>.value(
+        value: weatherRepository,
+        child: BlocProvider.value(
+          value: homeBloc,
+          child: const SettingsIcon(
+            units: units,
+          ),
+        ),
+      );
+    }
+
+    testWidgets('renders correct Icon', (tester) async {
+      await tester.pumpApp(buildSubject());
+
+      expect(find.byType(Icon), findsOneWidget);
+      final iconWidget = tester.widget<Icon>(
+        find.byType(Icon),
+      );
+
+      expect(iconWidget.icon, Icons.settings_outlined);
+    });
+
+    testWidgets('shows SettingsDialog on tap', (tester) async {
+      when(() => homeBloc.state).thenReturn(state);
+      await tester.pumpApp(buildSubject());
+
+      expect(find.byType(IconButton), findsOneWidget);
+      final iconButton = find.byKey(const Key('HomePage_SettingsIcon'));
+
+      await tester.pumpAndSettle();
+
+      await tester.ensureVisible(iconButton);
+      await tester.tap(iconButton);
+      await tester.pumpAndSettle();
+
+      expect(find.byType(SettingsDialogContent), findsOneWidget);
     });
   });
 
