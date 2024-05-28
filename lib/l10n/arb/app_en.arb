@@ -4,5 +4,10 @@
     "humidity": "Humidity",
     "pressure": "Pressure",
     "sthWentWrong": "Ups... Something went wrong",
-    "retry": "Retry"
+    "retry": "Retry",
+    "units": "Units",
+    "metric": "Metric",
+    "metricDescription": "(Celsius)",
+    "imperial": "Imperial",
+    "imperialDescription": "(Fahrenheit)"
 }
