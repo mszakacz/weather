@@ -193,5 +193,109 @@ void main() {
         ],
       );
     });
+
+    group('SwitchUnits', () {
+      final dayWeather = DayWeather(
+        day: DateTime(2024, 5, 22),
+        maxTemperature: 24,
+        minTemperature: 20,
+        iconUrl: 'url',
+        condition: 'few clouds',
+        humidity: 69,
+        pressure: 1015,
+        windGust: 2.3,
+      );
+      blocTest<HomeBloc, HomeState>(
+        'does not emit new state if units is null',
+        build: buildBloc,
+        seed: () => HomeState(
+          status: HomeStatus.present,
+          weatherForecast: WeatherForecast.empty,
+          selectedDay: DayWeather.empty,
+          units: units,
+        ),
+        act: (bloc) => bloc.add(
+          const SwitchUnits(units: null),
+        ),
+        expect: () => <HomeState>[],
+      );
+      blocTest<HomeBloc, HomeState>(
+        'emits error state when saveUnits fails',
+        build: () {
+          when(
+            () => weatherRepository.saveUnits(Units.imperial),
+          ).thenThrow(Exception('oops'));
+          return buildBloc();
+        },
+        seed: () => HomeState(
+          status: HomeStatus.present,
+          weatherForecast: WeatherForecast.empty,
+          selectedDay: dayWeather,
+          units: Units.metric,
+        ),
+        act: (bloc) => bloc.add(
+          const SwitchUnits(units: Units.imperial),
+        ),
+        expect: () => [
+          HomeState(
+            status: HomeStatus.loading,
+            weatherForecast: WeatherForecast.empty,
+            selectedDay: dayWeather,
+            units: Units.metric,
+          ),
+          HomeState(
+            status: HomeStatus.error,
+            weatherForecast: WeatherForecast.empty,
+            selectedDay: dayWeather,
+            units: Units.metric,
+          ),
+        ],
+      );
+
+      blocTest<HomeBloc, HomeState>(
+        'saves units and emits new present state',
+        build: () {
+          when(() => weatherRepository.saveUnits(Units.imperial))
+              .thenAnswer((_) async {
+            return;
+          });
+          when(
+            () => weatherRepository.getWeatherForDeviceLocation(),
+          ).thenAnswer(
+            (_) async => response,
+          );
+          return buildBloc();
+        },
+        seed: () => HomeState(
+          status: HomeStatus.present,
+          weatherForecast: WeatherForecast.empty,
+          selectedDay: dayWeather,
+          units: Units.metric,
+        ),
+        act: (bloc) => bloc.add(
+          const SwitchUnits(units: Units.imperial),
+        ),
+        expect: () => [
+          HomeState(
+            status: HomeStatus.loading,
+            weatherForecast: WeatherForecast.empty,
+            selectedDay: dayWeather,
+            units: Units.metric,
+          ),
+          HomeState(
+            status: HomeStatus.loading,
+            weatherForecast: WeatherForecast.empty,
+            selectedDay: dayWeather,
+            units: Units.imperial,
+          ),
+          HomeState(
+            status: HomeStatus.present,
+            weatherForecast: response,
+            selectedDay: response.days.first,
+            units: Units.imperial,
+          ),
+        ],
+      );
+    });
   });
 }
