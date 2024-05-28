@@ -74,4 +74,33 @@ void main() {
       });
     });
   });
+
+  group('SettingsDialogContent', () {
+    const selected = Units.metric;
+    Widget buildSubject() {
+      return SettingsDialogContent(
+        onChange: (_) {},
+        selected: selected,
+      );
+    }
+
+    testWidgets('renders RadioList with correct selection', (tester) async {
+      await tester.pumpApp(buildSubject());
+
+      expect(
+        find.byKey(
+          const Key('SettingsDialog_Content_RadioList'),
+        ),
+        findsOneWidget,
+      );
+
+      final radioList = tester.widget<RadioList<Units>>(
+        find.byKey(
+          const Key('SettingsDialog_Content_RadioList'),
+        ),
+      );
+
+      expect(radioList.selected, selected);
+    });
+  });
 }
