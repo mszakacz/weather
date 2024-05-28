@@ -14,6 +14,7 @@ void main() {
 
     setUp(() {
       weatherRepository = MockWeatherRepository();
+      when(() => weatherRepository.getUnits()).thenReturn(Units.metric);
     });
 
     HomeBloc buildBloc() {
