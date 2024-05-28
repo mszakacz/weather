@@ -15,10 +15,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
             status: HomeStatus.loading,
             weatherForecast: WeatherForecast.empty,
             selectedDay: DayWeather.empty,
+            units: weatherRepository.getUnits(),
           ),
         ) {
     on<GetWeatherForecast>(_onGetWeatherForecast);
     on<SelectDay>(_onSelectDay);
+    on<SwitchUnits>(_onSwitchUnits);
   }
 
   final WeatherRepository _weatherRepository;
@@ -61,5 +63,37 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         selectedDay: event.dayWeather,
       ),
     );
+  }
+
+  Future<void> _onSwitchUnits(
+    SwitchUnits event,
+    Emitter<HomeState> emit,
+  ) async {
+    final units = event.units;
+    if (units != null) {
+      emit(
+        state.copyWith(
+          status: HomeStatus.loading,
+        ),
+      );
+
+      try {
+        await _weatherRepository.saveUnits(units);
+        emit(
+          state.copyWith(
+            units: units,
+          ),
+        );
+        add(
+          const GetWeatherForecast(),
+        );
+      } catch (_) {
+        emit(
+          state.copyWith(
+            status: HomeStatus.error,
+          ),
+        );
+      }
+    }
   }
 }
