@@ -118,6 +118,7 @@ class PresentView extends StatelessWidget {
                   // Location And Settings
                   TopBar(
                     city: state.weatherForecast.city,
+                    units: state.units,
                   ),
 
                   const SizedBox(height: AppSpacing.m),
@@ -125,6 +126,7 @@ class PresentView extends StatelessWidget {
                   // Weather Details
                   WeatherDetailsWidget(
                     dayWeather: state.selectedDay,
+                    units: state.units,
                   ),
 
                   // Days
@@ -148,10 +150,12 @@ class PresentView extends StatelessWidget {
 class TopBar extends StatelessWidget {
   const TopBar({
     required this.city,
+    required this.units,
     super.key,
   });
 
   final String city;
+  final Units units;
 
   @override
   Widget build(BuildContext context) {
@@ -165,7 +169,17 @@ class TopBar extends StatelessWidget {
           child: Align(
             alignment: Alignment.centerRight,
             child: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                SettingsDialog.show(
+                  context: context,
+                  selected: units,
+                  onChange: (u) {
+                    context.read<HomeBloc>().add(
+                          SwitchUnits(units: u),
+                        );
+                  },
+                );
+              },
               icon: const Icon(
                 Icons.settings_outlined,
               ),
