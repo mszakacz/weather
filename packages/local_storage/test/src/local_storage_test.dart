@@ -34,5 +34,44 @@ void main() {
         );
       });
     });
+
+    group('save', () {
+      test('calls setString on sharedPreferences', () async {
+        const value = 'v';
+        const key = 'k';
+        when(
+          () => mockSharedPreferences.setString(key, value),
+        ).thenAnswer((_) async => true);
+        await createSubject().save(value, key);
+        verify(
+          () => mockSharedPreferences.setString(key, value),
+        ).called(1);
+      });
+    });
+
+    group('get', () {
+      const value = 'v';
+      const key = 'k';
+
+      test('calls getString on sharedPreferences', () async {
+        when(
+          () => mockSharedPreferences.getString(key),
+        ).thenAnswer((_) => value);
+
+        createSubject().get(key);
+        verify(
+          () => mockSharedPreferences.getString(key),
+        ).called(1);
+      });
+
+      test('returns correct String from database', () async {
+        when(
+          () => mockSharedPreferences.getString(key),
+        ).thenAnswer((_) => value);
+
+        final response = createSubject().get(key);
+        expect(response, value);
+      });
+    });
   });
 }
