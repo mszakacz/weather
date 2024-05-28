@@ -42,5 +42,25 @@ void main() {
         );
       });
     });
+
+    group('SwitchUnits', () {
+      const units = Units.metric;
+      test('supports value equality', () {
+        expect(
+          const SwitchUnits(units: units),
+          equals(
+            const SwitchUnits(units: units),
+          ),
+        );
+      });
+      test('props are correct', () {
+        expect(
+          const SwitchUnits(units: units).props,
+          equals(<Object?>[
+            units,
+          ]),
+        );
+      });
+    });
   });
 }
