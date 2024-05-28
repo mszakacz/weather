@@ -15,6 +15,7 @@ class MockWeatherRepository extends Mock implements WeatherRepository {}
 
 void main() {
   late HomeBloc homeBloc;
+  late MockWeatherRepository weatherRepository;
 
   final forecast = WeatherForecast(
     city: 'Warsaw',
@@ -72,6 +73,8 @@ void main() {
 
   setUp(() {
     homeBloc = MockHomeBloc();
+    weatherRepository = MockWeatherRepository();
+    when(() => weatherRepository.getUnits()).thenReturn(Units.metric);
     when(() => homeBloc.state).thenReturn(
       HomeState(
         status: HomeStatus.loading,
@@ -83,8 +86,6 @@ void main() {
   });
   group('HomePage', () {
     Widget buildSubject() {
-      final weatherRepository = MockWeatherRepository();
-
       return RepositoryProvider<WeatherRepository>.value(
         value: weatherRepository,
         child: BlocProvider.value(
