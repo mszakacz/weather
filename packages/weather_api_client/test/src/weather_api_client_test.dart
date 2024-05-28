@@ -16,6 +16,7 @@ void main() {
 
     const lat = 30.05;
     const lon = 45.01;
+    const units = 'metric';
 
     setUpAll(() {
       registerFallbackValue(FakeUri());
@@ -42,6 +43,7 @@ void main() {
           await apiClient.getWeatherForecast(
             lat: lat,
             lon: lon,
+            units: units,
           );
         } catch (_) {}
         verify(
@@ -72,6 +74,7 @@ void main() {
             () async => apiClient.getWeatherForecast(
               lat: lat,
               lon: lon,
+              units: units,
             ),
             throwsA(isA<GetWeatherForecastFailure>()),
           );
@@ -94,7 +97,11 @@ void main() {
           when(() => mockHttpClient.get(any()))
               .thenAnswer((_) async => response);
 
-          final actual = apiClient.getWeatherForecast(lat: lat, lon: lon);
+          final actual = apiClient.getWeatherForecast(
+            lat: lat,
+            lon: lon,
+            units: units,
+          );
           expect(
             actual,
             throwsA(
@@ -178,6 +185,7 @@ void main() {
         final actual = await apiClient.getWeatherForecast(
           lat: lat,
           lon: lon,
+          units: units,
         );
 
         const expected = WeatherForecastData(
