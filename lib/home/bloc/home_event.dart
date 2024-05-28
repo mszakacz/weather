@@ -24,3 +24,16 @@ class SelectDay extends HomeEvent {
         dayWeather,
       ];
 }
+
+class SwitchUnits extends HomeEvent {
+  const SwitchUnits({
+    required this.units,
+  });
+
+  final Units? units;
+
+  @override
+  List<Object?> get props => [
+        units,
+      ];
+}
