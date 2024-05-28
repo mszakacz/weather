@@ -115,10 +115,25 @@ class PresentView extends StatelessWidget {
                 children: [
                   const SizedBox(height: AppSpacing.s),
 
-                  // Location And Settings
-                  TopBar(
-                    city: state.weatherForecast.city,
-                    units: state.units,
+                  Row(
+                    children: [
+                      const Spacer(),
+
+                      // Location
+                      LocationWidget(
+                        city: state.weatherForecast.city,
+                      ),
+
+                      // Settings Icon
+                      Expanded(
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: SettingsIcon(
+                            units: state.units,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
 
                   const SizedBox(height: AppSpacing.m),
@@ -147,51 +162,6 @@ class PresentView extends StatelessWidget {
 }
 
 @visibleForTesting
-class TopBar extends StatelessWidget {
-  const TopBar({
-    required this.city,
-    required this.units,
-    super.key,
-  });
-
-  final String city;
-  final Units units;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const Spacer(),
-        LocationWidget(
-          city: city,
-        ),
-        Expanded(
-          child: Align(
-            alignment: Alignment.centerRight,
-            child: IconButton(
-              onPressed: () {
-                SettingsDialog.show(
-                  context: context,
-                  selected: units,
-                  onChange: (u) {
-                    context.read<HomeBloc>().add(
-                          SwitchUnits(units: u),
-                        );
-                  },
-                );
-              },
-              icon: const Icon(
-                Icons.settings_outlined,
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-@visibleForTesting
 class LocationWidget extends StatelessWidget {
   const LocationWidget({
     required this.city,
@@ -214,6 +184,37 @@ class LocationWidget extends StatelessWidget {
           style: TextStyles.h3blue,
         ),
       ],
+    );
+  }
+}
+
+@visibleForTesting
+class SettingsIcon extends StatelessWidget {
+  const SettingsIcon({
+    required this.units,
+    super.key,
+  });
+
+  final Units units;
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      key: const Key('HomePage_SettingsIcon'),
+      onPressed: () {
+        SettingsDialog.show(
+          context: context,
+          selected: units,
+          onChange: (u) {
+            context.read<HomeBloc>().add(
+                  SwitchUnits(units: u),
+                );
+          },
+        );
+      },
+      icon: const Icon(
+        Icons.settings_outlined,
+      ),
     );
   }
 }
