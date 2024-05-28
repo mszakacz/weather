@@ -3,10 +3,9 @@
 ## App Overview
 Mobile app presents Weather Forecast for 5 next days. 
 
+<img height="600" alt="Screenshot 2024-05-28 at 12 47 29" src="https://github.com/mszakacz/weather/assets/38291070/b7ec4c75-902e-4ffa-9dc7-be6bc20e8c5d">
+<img height="600" alt="Screenshot 2024-05-28 at 12 47 04" src="https://github.com/mszakacz/weather/assets/38291070/a1cfc705-5c2b-48f6-9bed-8f8a61e5d8fb">
 
-<img height="500" alt="Screenshot 2024-05-28 at 12 47 29" src="https://github.com/mszakacz/weather/assets/38291070/b7ec4c75-902e-4ffa-9dc7-be6bc20e8c5d">
-
-<img height="500" alt="Screenshot 2024-05-28 at 12 47 04" src="https://github.com/mszakacz/weather/assets/38291070/a1cfc705-5c2b-48f6-9bed-8f8a61e5d8fb">
 
 ## API KEY
 ### Weather API Key
