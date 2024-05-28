@@ -10,11 +10,13 @@ void main() {
       HomeStatus? status,
       WeatherForecast? weatherForecast,
       DayWeather? selectedDay,
+      Units? units,
     }) {
       return HomeState(
         status: status ?? HomeStatus.present,
         weatherForecast: weatherForecast ?? WeatherForecast.empty,
         selectedDay: selectedDay ?? DayWeather.empty,
+        units: units ?? Units.metric,
       );
     }
 
@@ -32,6 +34,7 @@ void main() {
           HomeStatus.present,
           WeatherForecast.empty,
           DayWeather.empty,
+          Units.metric,
         ]),
       );
     });
@@ -73,6 +76,7 @@ void main() {
               pressure: 1015,
               windGust: 2.3,
             ),
+            units: Units.imperial,
           ),
           equals(
             createSubject(
@@ -91,6 +95,7 @@ void main() {
                 pressure: 1015,
                 windGust: 2.3,
               ),
+              units: Units.imperial,
             ),
           ),
         );
