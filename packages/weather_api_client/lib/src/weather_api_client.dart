@@ -62,6 +62,8 @@ class WeatherApiClient {
   }
 
   /// Get locations by query
+  /// example of the request:
+  /// https://api.openweathermap.org/geo/1.0/direct?q=London&limit=1&APPID=<api_key>
   Future<List<LocationData>> getLocations({
     required String query,
     int limit = 3,
