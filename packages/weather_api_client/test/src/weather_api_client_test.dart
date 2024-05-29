@@ -226,5 +226,128 @@ void main() {
         );
       });
     });
+
+    group('getLocations', () {
+      test('makes correct https request', () async {
+        final response = MockResponse();
+        when(() => response.statusCode).thenReturn(200);
+        when(() => response.body).thenReturn(
+          '''
+            [
+              {
+                "name":"London",
+                "lat":51.5156177,
+                "lon":-0.0919983,
+                "country":"GB"
+              }
+            ]
+          ''',
+        );
+        when(
+          () => mockHttpClient.get(any()),
+        ).thenAnswer((_) async => response);
+        await apiClient.getLocations(
+          query: 'London',
+          limit: 1,
+        );
+        final expectedUri = Uri.https(
+          'api.openweathermap.org',
+          '/geo/1.0/direct',
+          {
+            'q': 'London',
+            'limit': '1',
+            'APPID': '',
+          },
+        );
+
+        verify(
+          () => mockHttpClient.get(expectedUri),
+        ).called(1);
+      });
+
+      test(
+        'throws GetLocationsFailure on non-200 response',
+        () async {
+          const query = 'Warsaw';
+
+          final response = MockResponse();
+
+          when(() => response.statusCode).thenReturn(400);
+          when(() => mockHttpClient.get(any()))
+              .thenAnswer((_) async => response);
+          expect(
+            () async => apiClient.getLocations(
+              query: query,
+            ),
+            throwsA(isA<GetLocationsFailure>()),
+          );
+        },
+      );
+
+      test(
+        'throws WeatherForecastDeserializationFailure',
+        () async {
+          final response = MockResponse();
+          when(() => response.statusCode).thenReturn(200);
+          when(() => response.body).thenReturn(
+            '''
+              {
+              'city': 'Warsaw',
+              }
+            ''',
+          );
+
+          when(() => mockHttpClient.get(any()))
+              .thenAnswer((_) async => response);
+
+          final actual = apiClient.getLocations(
+            query: 'Warsaw',
+          );
+          expect(
+            actual,
+            throwsA(
+              isA<LocationDataDeserializationFailure>(),
+            ),
+          );
+        },
+      );
+
+      test('returns List<LocationData> on valid response', () async {
+        final response = MockResponse();
+        when(() => response.statusCode).thenReturn(200);
+
+        when(() => response.body).thenReturn(
+          '''
+            [
+              {
+                "name":"London",
+                "lat":51.5156177,
+                "lon":-0.0919983,
+                "country":"GB"
+              }
+            ]
+          ''',
+        );
+        when(
+          () => mockHttpClient.get(any()),
+        ).thenAnswer((_) async => response);
+
+        final actual = await apiClient.getLocations(
+          query: 'London',
+          limit: 1,
+        );
+
+        const expected = [
+          LocationData(
+            name: 'London',
+            country: 'GB',
+            lat: 51.5156177,
+            lon: -0.0919983,
+          ),
+        ];
+
+        expect(actual, expected);
+      });
+    });
   });
 }
