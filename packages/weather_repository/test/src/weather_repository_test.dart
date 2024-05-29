@@ -87,6 +87,7 @@ void main() {
         locationApiClient: mockLocationApiClient,
         localStorage: mockLocalStorage,
       );
+      when(() => mockLocalStorage.save(any(), any())).thenAnswer((_) async {});
     });
 
     WeatherRepository createSubject() => WeatherRepository(
@@ -196,6 +197,51 @@ void main() {
           actual,
           equals(forecast),
         );
+      });
+    });
+
+    group('saveUnits', () {
+      test('calls save on LocalStorage', () {
+        createSubject().saveUnits(Units.metric);
+        verify(
+          () => mockLocalStorage.save('metric', 'units'),
+        ).called(1);
+      });
+
+      test('saved Units.metric correctly', () {
+        createSubject().saveUnits(Units.metric);
+        verify(
+          () => mockLocalStorage.save('metric', 'units'),
+        ).called(1);
+      });
+
+      test('saved Units.imperial correctly', () {
+        createSubject().saveUnits(Units.imperial);
+        verify(
+          () => mockLocalStorage.save('imperial', 'units'),
+        ).called(1);
+      });
+    });
+
+    group('getUnits', () {
+      test('calls get on LocalStorage', () {
+        createSubject().getUnits();
+        verify(
+          () => mockLocalStorage.get('units'),
+        ).called(1);
+      });
+
+      test('returns Units.metric when metric is saved', () {
+        when(() => mockLocalStorage.get(any())).thenReturn('metric');
+        expect(createSubject().getUnits(), Units.metric);
+      });
+      test('returns Units.imperial when imperial is saved', () {
+        when(() => mockLocalStorage.get(any())).thenReturn('imperial');
+        expect(createSubject().getUnits(), Units.imperial);
+      });
+      test('returns Units.metric when no data is saved', () {
+        when(() => mockLocalStorage.get(any())).thenReturn(null);
+        expect(createSubject().getUnits(), Units.metric);
       });
     });
   });
