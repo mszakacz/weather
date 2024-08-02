@@ -22,7 +22,7 @@ dependencies:
   location_api_client:
     path: packages/location_api_client
   meta: ^1.12.0
-  shared_preferences: ^2.2.3
+  shared_preferences: ^2.3.1
   weather_api_client:
     path: packages/weather_api_client
   weather_repository:
